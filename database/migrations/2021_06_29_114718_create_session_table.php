@@ -19,6 +19,7 @@ class CreateSessionTable extends Migration
             $table->dateTime('date');
             $table->string('place');
             $table->string('URL');
+            $table->text('recap');
             $table->integer('campaign_id');
             $table->foreign('campaign_id')->references('id')->on('campaign');
             $table->timestamps();
