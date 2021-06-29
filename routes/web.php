@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\WallController;
 use App\Http\Controllers\FilmController;
+use App\Http\Controllers\CampaignController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,3 +69,8 @@ Route::get(
     '/films',
     [FilmController::class, 'index']
 )->middleware(['auth'])->name('films');
+
+Route::get(
+    '/campagnes',
+    [CampaignController::class, 'index']
+)->middleware(['auth'])->name('campaigns');
