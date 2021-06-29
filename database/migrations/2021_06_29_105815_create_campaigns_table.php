@@ -18,9 +18,7 @@ class CreateCampaignsTable extends Migration
             $table->string('name', 150);
             $table->string('description');
             $table->integer('theme_id');
-            $table->foreign('theme_id')->references('id')->on('themes');
             $table->integer('master_id');
-            $table->foreign('master_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
