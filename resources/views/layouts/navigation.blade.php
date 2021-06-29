@@ -16,6 +16,21 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('campaigns')" :active="request()->routeIs('campaigns')">
+                        Campagnes
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('wall')" :active="request()->routeIs('wall')">
+                        Calendrier
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('wall')" :active="request()->routeIs('wall')">
+                        Personnages
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -44,6 +59,7 @@
                                 {{ __('Log out') }}
                             </x-dropdown-link>
                         </form>
+                        Paramètres
                     </x-slot>
                 </x-dropdown>
             </div>
