@@ -16,9 +16,7 @@ class CreateCharactersTable extends Migration
         Schema::create('characters', function (Blueprint $table) {
             $table->id();
             $table->integer('player_id');
-            $table->foreign('player_id')->references('id')->on('users');
             $table->integer('campaign_id');
-            $table->foreign('campaign_id')->references('id')->on('campaigns');
             $table->string('name');
             $table->string('ancestry');
             $table->string('class');
