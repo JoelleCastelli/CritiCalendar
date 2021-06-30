@@ -22,10 +22,17 @@
                         <div>Maître du jeu : {{ $campaign->owner->name }}</div>
                     </div>
                     <div class="py-2 players">
-                        Joueurs
+                        <h3>Joueurs</h3>
                     </div>
                     <div class="py-2 campaign-sessions">
-                        Sessions
+                        <h3>Sessions</h3>
+                        @foreach ($campaign->sessions as $session)
+                            <div class="py-2">
+                                <div><b>Nom :</b> {{ $session->name }}</div>
+                                <div><b>Date :</b> {{ date('d/m/Y H:i', strtotime($session->date)) }}</div>
+                                <div><b>Récapitulatif :</b> {{ $session->recap }}</div>
+                            </div>
+                        @endforeach
                     </div>
 
                 </div>

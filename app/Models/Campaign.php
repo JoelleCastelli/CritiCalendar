@@ -20,4 +20,8 @@ class Campaign extends Model
         return $this->belongsTo(Theme::class, 'theme_id');
     }
 
+    public function sessions() {
+        return $this->hasMany(Session::class)->orderBy('date', 'DESC');
+    }
+
 }
