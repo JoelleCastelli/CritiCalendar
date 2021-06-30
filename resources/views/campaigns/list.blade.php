@@ -26,7 +26,10 @@ Campagnes
                             <div><b>Nom :</b> {{ $campaign->name }}</div>
                             <div><b>Description :</b> {{ $campaign->description }}</div>
                             <div><b>Thème :</b> {{ $campaign->theme->name }}</div>
-                            <div>[<a href="{{ route('update_campaign', $campaign->id) }}">Modifier</a>]</div>
+                            <div>
+                                [<a href="{{ route('update_campaign', $campaign->id) }}">Modifier</a>]
+                                [<a href="{{ route('delete_campaign', $campaign->id) }}">Supprimer</a>]
+                            </div>
                         </div>
                     @endforeach
                     <a href="{{ route('new_campaign') }}">Créer une nouvelle campagne</a>

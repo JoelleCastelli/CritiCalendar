@@ -50,4 +50,10 @@ class CampaignController extends Controller
             $themesArray[$theme->id] = $theme->name;
         return view('campaigns.update-campaign', ['campaign' => $campaign, 'themes' => $themesArray]);
     }
+
+    function deleteCampaign(Request $request) {
+        $campaign = Campaign::find($request->campaign_id);
+        $campaign->delete();
+        return redirect()->route('campaigns')->with('success', 'La campagne a été supprimée');
+    }
 }

@@ -93,4 +93,9 @@ Route::group(['middleware' => ['campaignOwner']], function () {
         '/campagnes/modifier/{campaign_id}',
         [CampaignController::class, 'updateCampaign']
     )->middleware(['auth'])->name('update_campaign');
+
+    Route::get(
+        '/campagnes/supprimer/{campaign_id}',
+        [CampaignController::class, 'deleteCampaign']
+    )->middleware(['auth'])->name('delete_campaign');
 });
