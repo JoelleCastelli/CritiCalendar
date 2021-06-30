@@ -2,7 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Campaign;
+use App\Models\Character;
+use App\Models\Theme;
 use Illuminate\Database\Seeder;
+use \App\Models\User;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,5 +19,19 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
+        $this->call([
+            UserSeeder::class,
+            ThemeSeeder::class,
+            CampaignSeeder::class,
+            CharacterSeeder::class,
+            SessionSeeder::class
+        ]);
+
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('posts');
     }
 }
