@@ -21,7 +21,7 @@
                     {!! Form::label('description', 'Description') !!}
                     {!! Form::text('description') !!}
                     {!! Form::label('theme', 'Thème') !!}
-                    {!! Form::select('size', $themes) !!}
+                    {!! Form::select('theme', $themes) !!}
                     {!! Form::submit('Valider') !!}
                     {!! Form::close() !!}
                 </div>
