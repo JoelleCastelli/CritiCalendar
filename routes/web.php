@@ -3,6 +3,9 @@
 use App\Http\Controllers\WallController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\CampaignController;
+use App\Models\Campaign;
+use App\Models\Theme;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +23,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+    print_r(Campaign::all()->count() * 5);
+})->middleware(['auth'])->name('test');
+
+
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view ('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
