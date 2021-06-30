@@ -24,6 +24,7 @@ Campagnes
                         <ul>
                             <li>
                                 {{ $campaign->name }}
+                                [<a href="{{ route('update_campaign', $campaign->id) }}">Modifier</a>]
                             </li>
                         </ul>
                     @endforeach

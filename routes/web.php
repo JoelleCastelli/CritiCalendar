@@ -86,3 +86,8 @@ Route::post(
     '/campagnes/nouvelle-campagne',
     [CampaignController::class, 'saveCampaign']
 )->middleware(['auth'])->name('save_campaign');
+
+Route::get(
+    '/campagnes/modifier/{campaign_id}',
+    [CampaignController::class, 'updateCampaign']
+)->middleware(['auth'])->name('update_campaign');

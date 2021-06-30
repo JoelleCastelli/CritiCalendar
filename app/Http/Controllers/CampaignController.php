@@ -27,12 +27,21 @@ class CampaignController extends Controller
 
     public function saveCampaign(Request $request)
     {
-        $campaign = new Campaign;
+        $campaign = isset($request->campaign_id) ? Campaign::find($request->campaign_id) : new Campaign;
         $campaign->name = $request->name;
         $campaign->description = $request->description;
-        $campaign->theme_id = Auth::id();
+        $campaign->theme_id = $request->theme_id;
         $campaign->master_id = Auth::id();
         $campaign->save();
         return redirect()->route('campaigns');
+    }
+
+    function updateCampaign(Request $request) {
+        $campaign = Campaign::find($request->campaign_id);
+        $themes = Theme::all();
+        $themesArray = [];
+        foreach ($themes as $theme)
+            $themesArray[$theme->id] = $theme->name;
+        return view('campaigns.update-campaign', ['campaign' => $campaign, 'themes' => $themesArray]);
     }
 }
