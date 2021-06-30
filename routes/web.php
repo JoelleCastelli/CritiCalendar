@@ -111,4 +111,9 @@ Route::group(['middleware' => ['campaignOwner']], function () {
         '/campagnes/supprimer/{campaign_id}',
         [CampaignController::class, 'deleteCampaign']
     )->middleware(['auth'])->name('delete_campaign');
+
+    Route::post(
+        '/campagnes/inviter',
+        [CampaignController::class, 'sendInvite']
+    )->middleware(['auth'])->name('send_invite');
 });

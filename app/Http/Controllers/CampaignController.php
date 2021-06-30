@@ -7,6 +7,7 @@ use App\Models\Theme;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\InvitationEmail;
 
 class CampaignController extends Controller
 {
@@ -61,5 +62,16 @@ class CampaignController extends Controller
     function details(Request $request) {
         $campaign = Campaign::find($request->campaign_id);
         return view('campaigns.details', ['campaign' => $campaign]);
+    }
+
+    function sendInvite(Request $request) {
+        $details = [
+            'body' => 'Vous avez reçu une invitation'
+        ];
+        \Mail::to($request->email)->send(new InvitationEmail($details));
+
+        return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
+                         ->with('success', "L'invitation a été envoyée");
+
     }
 }

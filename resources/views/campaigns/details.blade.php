@@ -23,6 +23,12 @@
                     </div>
                     <div class="py-2 players">
                         <h3>Joueurs</h3>
+                        {!! Form::open(['route' => 'send_invite']) !!}
+                            {!! Form::hidden('campaign_id', $campaign->id) !!}
+                            {!! Form::label('email', 'Adresse e-mail') !!}
+                            {!! Form::text('email') !!}
+                            {!! Form::submit("Envoyer l'invitation") !!}
+                        {!! Form::close() !!}
                     </div>
                     <div class="py-2 campaign-sessions">
                         <h3>Sessions</h3>
