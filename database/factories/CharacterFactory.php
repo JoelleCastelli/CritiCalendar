@@ -26,7 +26,7 @@ class CharacterFactory extends Factory
     public function definition()
     {
         $campaign =  Campaign::all()->random();
-        $player =  DB::table('users')->whereNotIn('id', $campaign->id)->inRandomOrder()->first();
+        $player =  DB::table('users')->whereNotIn('id', [$campaign->id])->inRandomOrder()->first();
 
         return [
             'player_id' => $player->id,
