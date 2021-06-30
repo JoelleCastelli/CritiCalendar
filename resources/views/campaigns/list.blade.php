@@ -46,7 +46,6 @@ Campagnes
                             <div><b>Description :</b> {{ $campaign->description }}</div>
                             <div><b>Thème :</b> {{ $campaign->theme->name }}</div>
                             <div><b>Maître du jeu :</b> {{ $campaign->owner->name }}</div>
-                            <div>[<a href="{{ route('update_campaign', $campaign->id) }}">Modifier</a>]</div>
                         </div>
                     @endforeach
                 </div>
