@@ -21,7 +21,7 @@ Campagnes
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h3>Campagnes Maître du Jeu</h3>
-                    @foreach ($campaigns as $campaign)
+                    @foreach ($ownedCampaigns as $campaign)
                         <div class="py-2">
                             <div><b>Nom :</b> {{ $campaign->name }}</div>
                             <div><b>Description :</b> {{ $campaign->description }}</div>
@@ -40,8 +40,7 @@ Campagnes
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h3>Campagnes Joueur</h3>
-
-                    @foreach ($campaigns as $campaign)
+                    @foreach ($ownedCampaigns as $campaign)
                         <div class="py-2">
                             <div><b>Nom :</b> {{ $campaign->name }}</div>
                             <div><b>Description :</b> {{ $campaign->description }}</div>
@@ -50,8 +49,6 @@ Campagnes
                             <div>[<a href="{{ route('update_campaign', $campaign->id) }}">Modifier</a>]</div>
                         </div>
                     @endforeach
-                    {{--{{ $films->links() }}--}}
-
                 </div>
             </div>
         </div>

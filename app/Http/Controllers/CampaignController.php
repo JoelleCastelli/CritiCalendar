@@ -12,8 +12,8 @@ class CampaignController extends Controller
 {
     function index()
     {
-        $campaigns = Campaign::paginate(50);
-        return view('campaigns.list', ['campaigns' => $campaigns]);
+        $ownedCampaigns = Campaign::where('master_id', Auth::user()->id)->get();
+        return view('campaigns.list', ['ownedCampaigns' => $ownedCampaigns]);
     }
 
     function createNewCampaign()
