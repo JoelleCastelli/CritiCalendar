@@ -70,7 +70,24 @@ Route::get(
     [FilmController::class, 'index']
 )->middleware(['auth'])->name('films');
 
+
+// CAMPAIGNS
 Route::get(
     '/campagnes',
     [CampaignController::class, 'index']
 )->middleware(['auth'])->name('campaigns');
+
+Route::get(
+    '/campagnes/nouvelle-campagne',
+    [CampaignController::class, 'createNewCampaign']
+)->middleware(['auth'])->name('new_campaign');
+
+Route::post(
+    '/campagnes/nouvelle-campagne',
+    [CampaignController::class, 'saveCampaign']
+)->middleware(['auth'])->name('save_campaign');
+
+Route::get(
+    '/campagnes/modifier/{campaign_id}',
+    [CampaignController::class, 'updateCampaign']
+)->middleware(['auth'])->name('update_campaign');
