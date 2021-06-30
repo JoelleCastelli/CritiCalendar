@@ -53,6 +53,7 @@ class CampaignController extends Controller
 
     function deleteCampaign(Request $request) {
         $campaign = Campaign::find($request->campaign_id);
+        foreach ($campaign->sessions as $session) $session->delete();
         $campaign->delete();
         return redirect()->route('campaigns')->with('success', 'La campagne a été supprimée');
     }

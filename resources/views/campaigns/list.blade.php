@@ -29,7 +29,8 @@ Campagnes
                             <div>
                                 [<a href="{{ route('details_campaign', $campaign->id) }}">Consulter</a>]
                                 [<a href="{{ route('update_campaign', $campaign->id) }}">Modifier</a>]
-                                [<a href="{{ route('delete_campaign', $campaign->id) }}">Supprimer</a>]
+                                [<a onclick="return confirm('Voulez-vous vraiment supprimer cette campagne ? Toutes les ' +
+                                 'sessions et personnages associés seront supprimée')" href="{{ route('delete_campaign', $campaign->id) }}">Supprimer</a>]
                             </div>
                         </div>
                     @endforeach
