@@ -12,8 +12,8 @@ class CampaignController extends Controller
 {
     function index()
     {
-        $campaigns = Campaign::paginate(50);
-        return view('campaigns.list', ['campaigns' => $campaigns]);
+        $ownedCampaigns = Campaign::where('master_id', Auth::user()->id)->get();
+        return view('campaigns.list', ['ownedCampaigns' => $ownedCampaigns]);
     }
 
     function createNewCampaign()
@@ -27,13 +27,19 @@ class CampaignController extends Controller
 
     public function saveCampaign(Request $request)
     {
-        $campaign = isset($request->campaign_id) ? Campaign::find($request->campaign_id) : new Campaign;
+        if(isset($request->campaign_id)) {
+            $campaign = Campaign::find($request->campaign_id);
+            $msg = "La campagne a été mise à jour";
+        } else {
+            $campaign = new Campaign;
+            $msg = "La nouvelle campagne a été créée";
+        }
         $campaign->name = $request->name;
         $campaign->description = $request->description;
         $campaign->theme_id = $request->theme_id;
         $campaign->master_id = Auth::id();
         $campaign->save();
-        return redirect()->route('campaigns');
+        return redirect()->route('campaigns')->with('success', $msg);
     }
 
     function updateCampaign(Request $request) {
@@ -43,5 +49,11 @@ class CampaignController extends Controller
         foreach ($themes as $theme)
             $themesArray[$theme->id] = $theme->name;
         return view('campaigns.update-campaign', ['campaign' => $campaign, 'themes' => $themesArray]);
+    }
+
+    function deleteCampaign(Request $request) {
+        $campaign = Campaign::find($request->campaign_id);
+        $campaign->delete();
+        return redirect()->route('campaigns')->with('success', 'La campagne a été supprimée');
     }
 }
