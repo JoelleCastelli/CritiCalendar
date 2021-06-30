@@ -27,6 +27,7 @@ Campagnes
                             <div><b>Description :</b> {{ $campaign->description }}</div>
                             <div><b>Thème :</b> {{ $campaign->theme->name }}</div>
                             <div>
+                                [<a href="{{ route('details_campaign', $campaign->id) }}">Consulter</a>]
                                 [<a href="{{ route('update_campaign', $campaign->id) }}">Modifier</a>]
                                 [<a href="{{ route('delete_campaign', $campaign->id) }}">Supprimer</a>]
                             </div>

@@ -87,6 +87,11 @@ Route::post(
     [CampaignController::class, 'saveCampaign']
 )->middleware(['auth'])->name('save_campaign');
 
+Route::get(
+    '/campagnes/details/{campaign_id}',
+    [CampaignController::class, 'details']
+)->middleware(['auth'])->name('details_campaign');
+
 
 Route::group(['middleware' => ['campaignOwner']], function () {
     Route::get(

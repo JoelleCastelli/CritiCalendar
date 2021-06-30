@@ -22,7 +22,7 @@ class CampaignController extends Controller
         $themesArray = [];
         foreach ($themes as $theme)
             $themesArray[$theme->id] = $theme->name;
-        return view('campaigns.new-campaign', ['themes' => $themesArray]);
+        return view('campaigns.new', ['themes' => $themesArray]);
     }
 
     public function saveCampaign(Request $request)
@@ -48,12 +48,17 @@ class CampaignController extends Controller
         $themesArray = [];
         foreach ($themes as $theme)
             $themesArray[$theme->id] = $theme->name;
-        return view('campaigns.update-campaign', ['campaign' => $campaign, 'themes' => $themesArray]);
+        return view('campaigns.update', ['campaign' => $campaign, 'themes' => $themesArray]);
     }
 
     function deleteCampaign(Request $request) {
         $campaign = Campaign::find($request->campaign_id);
         $campaign->delete();
         return redirect()->route('campaigns')->with('success', 'La campagne a été supprimée');
+    }
+
+    function details(Request $request) {
+        $campaign = Campaign::find($request->campaign_id);
+        return view('campaigns.details', ['campaign' => $campaign]);
     }
 }
