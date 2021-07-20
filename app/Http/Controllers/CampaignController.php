@@ -96,4 +96,14 @@ class CampaignController extends Controller
                 ->with('success', "L'invitation a été envoyée à ".$request->email);
         }
     }
+
+    function sendInviteAgain (Request $request) {
+        $details = [
+            'campaign' => Campaign::find($request->campaign_id),
+        ];
+        \Mail::to($request->email)->send(new InvitationEmail($details));
+
+        return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
+            ->with('success', "L'invitation a été envoyée une nouvelle fois à ".$request->email);
+    }
 }
