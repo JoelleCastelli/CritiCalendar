@@ -11,17 +11,19 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="campaign-details">
+                    <div class="campaign-details py-3">
                         <div><b>Nom :</b> {{ $campaign->name }}</div>
                         <div><b>Description :</b> {{ $campaign->description }}</div>
                         <div><b>Thème :</b> {{ $campaign->theme->name }}</div>
                         <div><b>Maître du jeu :</b> {{ $campaign->owner->name }}</div>
                         <div class="btn btn-sm btn-danger">
                             <a onclick="return confirm('Voulez-vous vraiment supprimer cette campagne ? Toutes les ' +
-                                 'sessions et personnages associés seront supprimés.')" href="{{ route('delete_campaign', $campaign->id) }}">Supprimer</a>
+                                 'sessions et personnages associés seront supprimés.')" href="{{ route('delete_campaign', $campaign->id) }}">
+                                Supprimer la campagne
+                            </a>
                         </div>
                     </div>
-                    <div class="py-2 players">
+                    <div class="py-3 players">
                         <b>Inviter des joueurs</b>
                         @if($campaign->master_id == Auth::user()->id)
                             {!! Form::open(['route' => 'send_invite']) !!}
@@ -70,7 +72,7 @@
                             @endforeach
                         @endif
                     </div>
-                    <div class="py-2 campaign-sessions">
+                    <div class="py-3 campaign-sessions">
                         <h3>Sessions</h3>
                         @foreach ($campaign->sessions as $session)
                             <div class="py-2">
