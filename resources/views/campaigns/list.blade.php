@@ -49,6 +49,11 @@ Campagnes
                             <div><b>Description :</b> {{ $campaign->description }}</div>
                             <div><b>Thème :</b> {{ $campaign->theme->name }}</div>
                             <div><b>Maître du jeu :</b> {{ $campaign->owner->name }}</div>
+                             <div>
+                                [<a href="{{ route('details_campaign', $campaign->id) }}">Consulter la campagne</a>]
+                                [<a href="{{ route('update_campaign', $campaign->id) }}">Voir mon personnage</a>]
+                                [<a onclick="return confirm('Voulez-vous vraiment quitter la campagne?')" href="{{ route('delete_campaign', $campaign->id) }}">Quitter la campagne</a>]
+                            </div>
                         </div>
                     @endforeach
                 </div>
