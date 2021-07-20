@@ -13,7 +13,7 @@ Campagnes
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h3>Campagnes Maître du Jeu</h3>
                     @foreach ($ownedCampaigns as $campaign)
-                        <div class="py-2">
+                        <div class="py-2 border-b border-gray-200">
                             <div><b>Nom :</b> {{ $campaign->name }}</div>
                             <div><b>Description :</b> {{ $campaign->description }}</div>
                             <div><b>Thème :</b> {{ $campaign->theme->name }}</div>
@@ -31,7 +31,9 @@ Campagnes
                             </div>
                         </div>
                     @endforeach
-                    <a href="{{ route('new_campaign') }}">Créer une nouvelle campagne</a>
+                    <div class="btn btn-sm btn-primary">
+                        <a href="{{ route('new_campaign') }}">Créer une nouvelle campagne</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -41,7 +43,7 @@ Campagnes
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h3>Campagnes Joueur</h3>
                     @foreach ($characters as $character)
-                        <div class="py-2">
+                        <div class="py-2 border-b border-gray-200">
                             <div><b>Nom :</b> {{ $character->campaign->name }}</div>
                             <div><b>Description :</b> {{ $character->campaign->description }}</div>
                             <div><b>Thème :</b> {{ $character->campaign->theme->name }}</div>
