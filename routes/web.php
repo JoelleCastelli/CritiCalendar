@@ -4,6 +4,7 @@ use App\Http\Controllers\WallController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CharacterController;
+use App\Http\Controllers\InvitationController;
 use App\Models\Campaign;
 use App\Models\Theme;
 use Illuminate\Support\Facades\DB;
@@ -107,6 +108,10 @@ Route::get(
     [CampaignController::class, 'details']
 )->middleware(['auth'])->name('details_campaign');
 
+Route::get(
+    '/invitations',
+    [InvitationController::class, 'index']
+)->middleware(['auth'])->name('invitations_list');
 
 Route::group(['middleware' => ['campaignOwner']], function () {
     Route::get(
