@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\InvitationEmail;
 use App\Models\Character;
-use App\Models\User;
 
 class CampaignController extends Controller
 {
