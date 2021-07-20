@@ -16,12 +16,14 @@
                         <div><b>Description :</b> {{ $campaign->description }}</div>
                         <div><b>Thème :</b> {{ $campaign->theme->name }}</div>
                         <div><b>Maître du jeu :</b> {{ $campaign->owner->name }}</div>
-                        <div class="btn btn-sm btn-danger">
-                            <a onclick="return confirm('Voulez-vous vraiment supprimer cette campagne ? Toutes les ' +
-                                 'sessions et personnages associés seront supprimés.')" href="{{ route('delete_campaign', $campaign->id) }}">
-                                Supprimer la campagne
-                            </a>
-                        </div>
+                        @if($campaign->master_id == Auth::user()->id)
+                            <div class="btn btn-sm btn-danger">
+                                <a onclick="return confirm('Voulez-vous vraiment supprimer cette campagne ? Toutes les ' +
+                                     'sessions et personnages associés seront supprimés.')" href="{{ route('delete_campaign', $campaign->id) }}">
+                                    Supprimer la campagne
+                                </a>
+                            </div>
+                        @endif
                     </div>
                     <div class="py-3 players">
                         <b>Inviter des joueurs</b>
