@@ -26,7 +26,7 @@ Campagnes
                                 </div>
                                 <div class="btn btn-sm btn-danger">
                                     <a onclick="return confirm('Voulez-vous vraiment supprimer cette campagne ? Toutes les ' +
-                                 'sessions et personnages associés seront supprimée')" href="{{ route('delete_campaign', $campaign->id) }}">Supprimer</a>
+                                 'sessions et personnages associés seront supprimés.')" href="{{ route('delete_campaign', $campaign->id) }}">Supprimer</a>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@ Campagnes
                             <div><b>Thème :</b> {{ $character->campaign->theme->name }}</div>
                             <div><b>Maître du jeu :</b> {{ $character->campaign->owner->name }}</div>
                              <div>
-                                <div class="btn btn-sm btn-primary">
+                                 <div class="btn btn-sm btn-primary">
                                      <a href="{{ route('details_campaign', $character->campaign->id) }}">Consulter la campagne</a>
                                  </div>
                                  <div class="btn btn-sm btn-secondary">
