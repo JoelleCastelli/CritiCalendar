@@ -24,4 +24,8 @@ class Campaign extends Model
         return $this->hasMany(Session::class)->orderBy('date', 'DESC');
     }
 
+    public function characters() {
+        return $this->hasMany(Character::class);
+    }
+
 }

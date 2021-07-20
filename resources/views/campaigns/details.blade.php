@@ -29,6 +29,9 @@
                             {!! Form::text('email') !!}
                             {!! Form::submit("Envoyer l'invitation") !!}
                         {!! Form::close() !!}
+                        @foreach ($campaign->characters as $character)
+                            <div>{{ $character->name }} (joué par {{ $character->player->name }})</div>
+                        @endforeach
                     </div>
                     <div class="py-2 campaign-sessions">
                         <h3>Sessions</h3>
