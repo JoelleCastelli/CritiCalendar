@@ -92,6 +92,12 @@ Route::post(
     [CharacterController::class, 'update']
 )->middleware(['auth'])->name('update_character');
 
+Route::get(
+    '/personnages/supprimer/{character_id}',
+    [CharacterController::class, 'delete']
+)->middleware(['auth'])->name('delete_character');
+
+
 
 // CAMPAIGNS
 Route::get(

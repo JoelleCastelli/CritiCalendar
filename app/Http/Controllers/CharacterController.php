@@ -23,4 +23,11 @@ class CharacterController extends Controller
             return redirect()->route('my-character', ['campaign_id' =>  $character->campaign_id, 'player_id' =>  $character->player_id,])->with('error', 'Oops ! Votre personnage n\'a pas pu être été modifié');
 
     }
+
+    public function delete(Request $request) // quit the campaign
+    {
+        $character = Character::Find($request->character_id);
+        $character->delete();
+        return redirect()->route('campaigns')->with('success', 'Votre partipation a bien été retirée');
+    }
 }

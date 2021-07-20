@@ -56,7 +56,7 @@ Campagnes
                                      <a href="{{ route('my-character', ['campaign_id' => $character->campaign->id, 'player_id' => Auth::user()->id ]) }}">Voir mon personnage</a>
                                  </div>
                                  <div class="btn btn-sm btn-danger">
-                                     <a onclick="return confirm('Voulez-vous vraiment quitter la campagne?')" href="{{ route('delete_campaign', $character->campaign->id) }}">Quitter la campagne</a>
+                                     <a onclick="return confirm('Voulez-vous vraiment quitter la campagne?')" href="{{ route('delete_character', $character->id) }}">Quitter la campagne</a>
                                  </div>
                             </div>
                         </div>
