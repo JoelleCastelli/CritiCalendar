@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CampaignRequest;
 use App\Http\Requests\InviteRequest;
 use App\Models\Campaign;
 use App\Models\Invitation;
@@ -31,7 +32,7 @@ class CampaignController extends Controller
         return view('campaigns.new', ['themes' => $themesArray]);
     }
 
-    public function saveCampaign(Request $request)
+    public function saveCampaign(CampaignRequest $request)
     {
         if(isset($request->campaign_id)) {
             $campaign = Campaign::find($request->campaign_id);
