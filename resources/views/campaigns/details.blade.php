@@ -5,16 +5,7 @@
         </h2>
     </x-slot>
 
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
+   @include('components.flash')
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -42,7 +33,14 @@
                             <div>
                                 <b>Invitations en attente :</b>
                                 @foreach ($campaign->invitations as $invitation)
-                                    <div>{{ $invitation->email }} [<a href="">Renvoyer l'invitation</a>]</div>
+                                    <div>{{ $invitation->email }}
+                                        <div class="btn btn-sm btn-primary">
+                                            <a href="">Renvoyer l'invitation</a>
+                                        </div>
+                                        <div class="btn btn-sm btn-danger">
+                                            <a href="">Supprimer l'invitation</a>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </div>
                         @endif
@@ -51,7 +49,9 @@
                         @if($campaign->characters->count() > 0)
                             <b>Joueurs :</b>
                             @foreach ($campaign->characters as $character)
-                                <div>{{ $character->name }} (joué par {{ $character->player->name }})</div>
+                                <div>{{ $character->name }} (joué par {{ $character->player->name }})
+                                    <div class="btn btn-sm btn-danger"><a href="">Retirer le joueur</a></div>
+                                </div>
                             @endforeach
                         @endif
                     </div>
