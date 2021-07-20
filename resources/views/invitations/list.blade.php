@@ -23,7 +23,7 @@
                                         <a href="{{ route('accept_invitation', $invitation->id) }}">Accepter</a>
                                     </div>
                                     <div class="btn btn-sm btn-danger">
-                                        <a href="">Refuser</a>
+                                        <a href="{{ route('decline_invitation', $invitation->id) }}">Refuser</a>
                                     </div>
                                 </div>
                             </div>

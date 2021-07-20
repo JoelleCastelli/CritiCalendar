@@ -22,7 +22,6 @@ class InvitationController extends Controller
     }
 
     function acceptInvitation(Request $request) {
-
         // Accept invitation
         $invitation = Invitation::find($request->invitation_id);
         if($invitation->email != Auth::user()->email) {
@@ -42,5 +41,18 @@ class InvitationController extends Controller
 
         return redirect()->route('invitations_list')
             ->with('success', "L'invitation a bien été acceptée");
+    }
+
+    function declineInvitation (Request $request) {
+        // Delete invitation
+        $invitation = Invitation::find($request->invitation_id);
+        if($invitation->email != Auth::user()->email) {
+            return redirect()->route('invitations_list')
+                ->with('error', "Vous ne pouvez pas refuser une invitation qui
+                n'est pas liée à votre adresse e-mail");
+        }
+        $invitation->delete();
+        return redirect()->route('invitations_list')
+            ->with('success', "L'invitation a bien été refusée");
     }
 }

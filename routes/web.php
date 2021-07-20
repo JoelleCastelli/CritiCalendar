@@ -80,7 +80,8 @@ Route::get(
     [FilmController::class, 'index']
 )->middleware(['auth'])->name('films');
 
-// CHARACTER
+
+// CHARACTERS
 Route::get(
     '/campaign/{campaign_id}/personnage/{player_id}',
     [CharacterController::class, 'details']
@@ -108,6 +109,8 @@ Route::get(
     [CampaignController::class, 'details']
 )->middleware(['auth'])->name('details_campaign');
 
+
+// INVITATIONS
 Route::get(
     '/invitations',
     [InvitationController::class, 'index']
@@ -118,6 +121,13 @@ Route::get(
     [InvitationController::class, 'acceptInvitation']
 )->middleware(['auth'])->name('accept_invitation');
 
+Route::get(
+    '/refuser-invitation/{invitation_id}',
+    [InvitationController::class, 'declineInvitation']
+)->middleware(['auth'])->name('decline_invitation');
+
+
+// ONLY ACCESSIBLE TO CAMPAIGN OWNERS
 Route::group(['middleware' => ['campaignOwner']], function () {
     Route::get(
         '/campagnes/modifier/{campaign_id}',
