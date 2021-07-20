@@ -38,7 +38,7 @@
                                             <a href="{{ route('send_invite_again', ['campaign_id'=>$campaign->id, 'email'=>$invitation->email]) }}">Renvoyer l'invitation</a>
                                         </div>
                                         <div class="btn btn-sm btn-danger">
-                                            <a href="">Supprimer l'invitation</a>
+                                            <a href="{{ route('delete_invite', ['campaign_id'=>$campaign->id, 'email'=>$invitation->email]) }}">Supprimer l'invitation</a>
                                         </div>
                                     </div>
                                 @endforeach

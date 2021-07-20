@@ -97,7 +97,7 @@ class CampaignController extends Controller
         }
     }
 
-    function sendInviteAgain (Request $request) {
+    function sendInviteAgain(Request $request) {
         $details = [
             'campaign' => Campaign::find($request->campaign_id),
         ];
@@ -105,5 +105,13 @@ class CampaignController extends Controller
 
         return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
             ->with('success', "L'invitation a été envoyée une nouvelle fois à ".$request->email);
+    }
+
+    function deleteInvite(Request $request) {
+        $invitation = Invitation::firstWhere('email', $request->email)->where('campaign_id', $request->campaign_id);
+        $invitation->delete();
+
+        return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
+            ->with('success', "L'invitation a de ".$request->email." a bien été supprimée");
     }
 }
