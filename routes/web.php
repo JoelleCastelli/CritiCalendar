@@ -3,6 +3,7 @@
 use App\Http\Controllers\WallController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\CharacterController;
 use App\Models\Campaign;
 use App\Models\Theme;
 use Illuminate\Support\Facades\DB;
@@ -77,6 +78,12 @@ Route::get(
     '/films',
     [FilmController::class, 'index']
 )->middleware(['auth'])->name('films');
+
+// CHARACTER
+Route::get(
+    '/campaign/{campaign_id}/personnage/{player_id}',
+    [CharacterController::class, 'details']
+)->middleware(['auth'])->name('my-character');
 
 
 // CAMPAIGNS
