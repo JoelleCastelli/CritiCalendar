@@ -32088,6 +32088,11 @@ select {
   --tw-backdrop-sepia: sepia(100%);
 }
 
+h3 {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
