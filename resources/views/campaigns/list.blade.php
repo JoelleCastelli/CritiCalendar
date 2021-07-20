@@ -62,6 +62,7 @@ Campagnes
                             </div>
                         </div>
                     @endforeach
+                    {{ $characters->links() }}
                 </div>
             </div>
         </div>
