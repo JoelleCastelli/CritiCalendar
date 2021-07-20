@@ -35,7 +35,7 @@
                                 @foreach ($campaign->invitations as $invitation)
                                     <div>{{ $invitation->email }}
                                         <div class="btn btn-sm btn-primary">
-                                            <a href="">Renvoyer l'invitation</a>
+                                            <a href="{{ route('send_invite_again', ['campaign_id'=>$campaign->id, 'email'=>$invitation->email]) }}">Renvoyer l'invitation</a>
                                         </div>
                                         <div class="btn btn-sm btn-danger">
                                             <a href="">Supprimer l'invitation</a>

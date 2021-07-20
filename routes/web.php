@@ -123,4 +123,9 @@ Route::group(['middleware' => ['campaignOwner']], function () {
         '/campagnes/inviter',
         [CampaignController::class, 'sendInvite']
     )->middleware(['auth'])->name('send_invite');
+
+    Route::get(
+        '/campagnes/renvoyer-invitation/{campaign_id}/{email}',
+        [CampaignController::class, 'sendInviteAgain']
+    )->middleware(['auth'])->name('send_invite_again');
 });
