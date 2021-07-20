@@ -84,6 +84,12 @@
                                 <div><b>Récapitulatif :</b> {{ $session->recap }}</div>
                             </div>
                         @endforeach
+
+                        @if($campaign->master_id == Auth::user()->id)
+                            <div class="btn btn-sm btn-primary">
+                                <a href="">Créer une session</a>
+                            </div>
+                        @endif
                     </div>
 
                 </div>
