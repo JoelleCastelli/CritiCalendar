@@ -87,6 +87,11 @@ Route::get(
     [CharacterController::class, 'details']
 )->middleware(['auth'])->name('my-character');
 
+Route::post(
+    '/personnages/modifier/{character_id}',
+    [CharacterController::class, 'update']
+)->middleware(['auth'])->name('update_character');
+
 
 // CAMPAIGNS
 Route::get(
