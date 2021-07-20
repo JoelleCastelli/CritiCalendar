@@ -18,6 +18,8 @@ class CreateSessionsTable extends Migration
             $table->string('name');
             $table->dateTime('date');
             $table->string('place');
+            $table->timestamp('start_time');
+            $table->timestamp('end_time')->nullable();
             $table->string('URL');
             $table->text('recap');
             $table->integer('campaign_id');

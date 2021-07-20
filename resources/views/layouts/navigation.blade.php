@@ -22,7 +22,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('wall')" :active="request()->routeIs('wall')">
+                    <x-nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
                         Calendrier
                     </x-nav-link>
                 </div>

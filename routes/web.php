@@ -91,3 +91,9 @@ Route::get(
     '/campagnes/modifier/{campaign_id}',
     [CampaignController::class, 'updateCampaign']
 )->middleware(['auth'])->name('update_campaign');
+
+
+//CALENDAR
+Route::get('/calendar', function () {
+    return view('calendar');
+})->name('calendar');
