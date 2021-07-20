@@ -113,6 +113,11 @@ Route::get(
     [InvitationController::class, 'index']
 )->middleware(['auth'])->name('invitations_list');
 
+Route::get(
+    '/accepter-invitation/{invitation_id}',
+    [InvitationController::class, 'acceptInvitation']
+)->middleware(['auth'])->name('accept_invitation');
+
 Route::group(['middleware' => ['campaignOwner']], function () {
     Route::get(
         '/campagnes/modifier/{campaign_id}',
