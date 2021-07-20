@@ -9,10 +9,9 @@ use Illuminate\Support\Facades\Auth;
 class CharacterController extends Controller
 {
 
-
     function index(Request $request)
     {
-        $characters = Character::where('player_id', Auth::user()->id)->get();
+        $characters = Character::where('player_id', Auth::user()->id)->paginate(5);
         return view('characters.list', ['characters' => $characters]);
     }
 

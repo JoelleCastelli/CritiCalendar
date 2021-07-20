@@ -31,6 +31,7 @@ Campagnes
                             </div>
                         </div>
                     @endforeach
+                    {{ $ownedCampaigns->links() }}
                     <div class="btn btn-sm btn-primary">
                         <a href="{{ route('new_campaign') }}">Créer une nouvelle campagne</a>
                     </div>

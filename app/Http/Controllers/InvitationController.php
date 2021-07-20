@@ -16,7 +16,7 @@ class InvitationController extends Controller
         $invitations = Invitation::where([
             ['email', '=', Auth::user()->email],
             ['accepted', '=', false]
-        ])->get();
+        ])->paginate(5);
 
         return view('invitations.list', ['invitations' => $invitations]);
     }

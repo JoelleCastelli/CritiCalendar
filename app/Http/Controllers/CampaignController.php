@@ -18,7 +18,7 @@ class CampaignController extends Controller
 {
     function index()
     {
-        $ownedCampaigns = Campaign::where('master_id', Auth::user()->id)->get();
+        $ownedCampaigns = Campaign::where('master_id', Auth::user()->id)->paginate(5);
         $characters = Auth::user()->characters; // get all characters linked to the connected user
         return view('campaigns.list', ['ownedCampaigns' => $ownedCampaigns, 'characters' => $characters]);
     }
