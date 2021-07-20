@@ -4,9 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Character;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CharacterController extends Controller
 {
+
+
+    function index(Request $request)
+    {
+        $characters = Character::where('player_id', Auth::user()->id)->get();
+        return view('characters.list', ['characters' => $characters]);
+    }
+
     function details(Request $request)
     {
         $character = Character::where('campaign_id', $request->campaign_id)->where('player_id', $request->player_id)->first();
