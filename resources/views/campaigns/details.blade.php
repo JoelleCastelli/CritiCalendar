@@ -38,6 +38,9 @@
                                 <b>Invitations en attente :</b>
                                 @foreach ($campaign->invitations as $invitation)
                                     <div>{{ $invitation->email }}
+                                        @if($invitation->user_id)
+                                            ({{ \App\Models\User::find($invitation->user_id)->name }})
+                                        @endif
                                         <div class="btn btn-sm btn-primary">
                                             <a href="{{ route('send_invite_again', ['campaign_id'=>$campaign->id, 'email'=>$invitation->email]) }}">Renvoyer l'invitation</a>
                                         </div>
