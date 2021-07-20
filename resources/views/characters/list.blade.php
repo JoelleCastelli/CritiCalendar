@@ -14,7 +14,7 @@
                     <div class="characters-list">
                         @foreach ($characters as $character)
                             <div class="py-3 border-b border-gray-200">
-                                <div><b>Nom du personnage :</b> {{ $character->name }}</div>
+                                <div><b>Nom du personnage :</b> {!! $character->name ?? "<i>Personnage sans nom</i>" !!}</div>
                                 <div>
                                     <b>Campagne : </b> {{ $character->campaign->name }}
                                     <div>
