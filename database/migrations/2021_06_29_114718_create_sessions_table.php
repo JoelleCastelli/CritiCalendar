@@ -14,12 +14,11 @@ class CreateSessionsTable extends Migration
     public function up()
     {
         Schema::create('sessions', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->dateTime('date');
+            $table->uuid('id')->primary();
+            $table->string('title');
+            $table->string('start');
+            $table->string('end')->nullable();
             $table->string('place');
-            $table->timestamp('start_time');
-            $table->timestamp('end_time')->nullable();
             $table->string('URL');
             $table->text('recap');
             $table->integer('campaign_id');
