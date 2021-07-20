@@ -14,7 +14,8 @@ class CampaignController extends Controller
     function index()
     {
         $ownedCampaigns = Campaign::where('master_id', Auth::user()->id)->get();
-        return view('campaigns.list', ['ownedCampaigns' => $ownedCampaigns]);
+        $invitedCampaigns = Campaign::where('master_id', '!=' ,Auth::user()->id)->get();
+        return view('campaigns.list', ['ownedCampaigns' => $ownedCampaigns, 'invitedCampaigns' => $invitedCampaigns]);
     }
 
     function createNewCampaign()

@@ -31,7 +31,7 @@ class CharacterFactory extends Factory
         return [
             'player_id' => $player->id,
             'campaign_id' => $campaign->id,
-            'name' => $this->faker->firstName . ' ' . $this->faker->lastName,
+            'name' => $this->faker->lastName,
             'ancestry' => $this->faker->word,
             'class' => $this->faker->word,
             'alignment' => $this->faker->word,
