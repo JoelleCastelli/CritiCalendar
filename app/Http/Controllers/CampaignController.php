@@ -95,6 +95,8 @@ class CampaignController extends Controller
             // Create invitation
             $invitation->email = $request->email;
             $invitation->campaign_id = $request->campaign_id;
+            if(User::firstWhere('email', $request->email))
+                $invitation->user_id = User::firstWhere('email', $request->email)->id;
             $invitation->save();
 
             // Send invitation email
