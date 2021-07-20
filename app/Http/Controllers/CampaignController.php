@@ -8,14 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\InvitationEmail;
+use App\Models\Character;
+use App\Models\User;
 
 class CampaignController extends Controller
 {
     function index()
     {
         $ownedCampaigns = Campaign::where('master_id', Auth::user()->id)->get();
-        $invitedCampaigns = Campaign::where('master_id', '!=' ,Auth::user()->id)->get();
-        return view('campaigns.list', ['ownedCampaigns' => $ownedCampaigns, 'invitedCampaigns' => $invitedCampaigns]);
+        $characters = Auth::user()->characters; // get all characters linked to the connected user
+        return view('campaigns.list', ['ownedCampaigns' => $ownedCampaigns, 'characters' => $characters]);
     }
 
     function createNewCampaign()

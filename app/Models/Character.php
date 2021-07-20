@@ -12,4 +12,9 @@ class Character extends Model
     public function player() {
         return $this->belongsTo(User::class, 'player_id');
     }
+
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class, 'campaign_id');
+    }
 }

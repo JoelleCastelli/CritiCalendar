@@ -43,16 +43,16 @@ Campagnes
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h3>Campagnes Joueur</h3>
-                    @foreach ($invitedCampaigns as $campaign)
+                    @foreach ($characters as $character)
                         <div class="py-2">
-                            <div><b>Nom :</b> {{ $campaign->name }}</div>
-                            <div><b>Description :</b> {{ $campaign->description }}</div>
-                            <div><b>Thème :</b> {{ $campaign->theme->name }}</div>
-                            <div><b>Maître du jeu :</b> {{ $campaign->owner->name }}</div>
+                            <div><b>Nom :</b> {{ $character->campaign->name }}</div>
+                            <div><b>Description :</b> {{ $character->campaign->description }}</div>
+                            <div><b>Thème :</b> {{ $character->campaign->theme->name }}</div>
+                            <div><b>Maître du jeu :</b> {{ $character->campaign->owner->name }}</div>
                              <div>
-                                [<a href="{{ route('details_campaign', $campaign->id) }}">Consulter la campagne</a>]
-                                [<a href="{{ route('update_campaign', $campaign->id) }}">Voir mon personnage</a>]
-                                [<a onclick="return confirm('Voulez-vous vraiment quitter la campagne?')" href="{{ route('delete_campaign', $campaign->id) }}">Quitter la campagne</a>]
+                                [<a href="{{ route('details_campaign', $character->campaign->id) }}">Consulter la campagne</a>]
+                                [<a href="{{ route('my-character', ['campaign_id' => $character->campaign->id, 'player_id' => Auth::user()->id ]) }}">Voir mon personnage</a>]
+                                [<a onclick="return confirm('Voulez-vous vraiment quitter la campagne?')" href="{{ route('delete_campaign', $character->campaign->id) }}">Quitter la campagne</a>]
                             </div>
                         </div>
                     @endforeach
