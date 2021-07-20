@@ -39,7 +39,6 @@ class CampaignRequest extends FormRequest
             'name.string' => 'Le nom de campagne doit être une chaîne de caractères',
             'description.string' => 'La description doit être une chaîne de caractères',
             'theme_id.integer' => 'Le thème doit être un nombre entier',
-
         ];
     }
 }

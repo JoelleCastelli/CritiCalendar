@@ -65,10 +65,10 @@
                         {!! Form::label('charisma', 'Charisme') !!}
                         {!! Form::number('charisma', $character->charisma) !!}<br><br>
 
-                        {!! Form::label('attacks', 'Attaque') !!}
+                        {!! Form::label('attacks', 'Attaques') !!}
                         {!! Form::text('attacks', $character->attacks) !!}<br><br>
 
-                        {!! Form::label('languages', 'Langages') !!}
+                        {!! Form::label('languages', 'Langues') !!}
                         {!! Form::text('languages', $character->languages) !!}<br><br>
 
                         {!! Form::label('equipment', 'Equipement') !!}

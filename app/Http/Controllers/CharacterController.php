@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CharacterRequest;
 use App\Models\Character;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,7 @@ class CharacterController extends Controller
         return view('characters.details', ['character' => $character]);
     }
 
-    function update(Request $request)
+    function update(CharacterRequest $request)
     {
         $update = Character::where('id', $request->character_id)->update($request->except(['_token', 'character_id']));
         $character = Character::Find($request->character_id);
