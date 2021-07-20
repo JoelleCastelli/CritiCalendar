@@ -82,6 +82,12 @@ Route::get(
 
 
 // CHARACTERS
+
+Route::get(
+    '/personnages',
+    [CharacterController::class, 'index']
+)->middleware(['auth'])->name('characters');
+
 Route::get(
     '/campaign/{campaign_id}/personnage/{player_id}',
     [CharacterController::class, 'details']
@@ -96,8 +102,6 @@ Route::get(
     '/personnages/supprimer/{character_id}',
     [CharacterController::class, 'delete']
 )->middleware(['auth'])->name('delete_character');
-
-
 
 // CAMPAIGNS
 Route::get(
