@@ -119,7 +119,7 @@ class CampaignController extends Controller
     }
 
     function deleteInvite(Request $request) {
-        $invitation = Invitation::firstWhere('email', $request->email)->where('campaign_id', $request->campaign_id);
+        $invitation = Invitation::where('email', $request->email)->where('campaign_id', $request->campaign_id)->first();
         $invitation->delete();
 
         return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
