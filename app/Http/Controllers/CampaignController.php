@@ -127,4 +127,12 @@ class CampaignController extends Controller
         return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
             ->with('success', "L'invitation a de ".$request->email." a bien été supprimée");
     }
+
+    function removeCharacter(Request $request) {
+        $character = Character::find($request->character_id);
+        $character->delete();
+
+        return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
+            ->with('success', "Le personnage a bien été supprimé");
+    }
 }

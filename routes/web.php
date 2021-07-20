@@ -169,4 +169,9 @@ Route::group(['middleware' => ['campaignOwner']], function () {
         [CampaignController::class, 'deleteInvite']
     )->middleware(['auth'])->name('delete_invite');
 
+    Route::get(
+        '/campagnes/supprimer-personnage/{character_id}/{campaign_id}',
+        [CampaignController::class, 'removeCharacter']
+    )->middleware(['auth'])->name('remove_character');
+
 });

@@ -60,7 +60,12 @@
                             <b>Joueurs :</b>
                             @foreach ($campaign->characters as $character)
                                 <div>{{ $character->name }} (joué par {{ $character->player->name }})
-                                    <div class="btn btn-sm btn-danger"><a href="">Retirer le joueur</a></div>
+                                    <div class="btn btn-sm btn-danger">
+                                        <a onclick="return confirm('Voulez-vous vraiment supprimer ce personnage ?')"
+                                           href="{{ route('remove_character', ['campaign_id' => $campaign->id, 'character_id' => $character->id]) }}">
+                                            Retirer le joueur
+                                        </a>
+                                    </div>
                                 </div>
                             @endforeach
                         @endif
