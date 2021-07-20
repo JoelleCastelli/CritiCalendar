@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InviteRequest;
 use App\Models\Campaign;
 use App\Models\Invitation;
 use App\Models\Theme;
@@ -68,7 +69,8 @@ class CampaignController extends Controller
         return view('campaigns.details', ['campaign' => $campaign]);
     }
 
-    function sendInvite(Request $request) {
+    function sendInvite(InviteRequest $request) {
+
         if($request->email === Auth::user()->email) {
             return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
                 ->with('error', "Vous ne pouvez pas vous inviter vous-même !");
