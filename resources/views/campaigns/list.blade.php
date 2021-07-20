@@ -5,16 +5,7 @@ Campagnes
 </h2>
 </x-slot>
 
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-    @if (session('error'))
-        <div class="alert alert-success">
-            {{ session('error') }}
-        </div>
-    @endif
+    @include('components.flash')
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -27,10 +18,16 @@ Campagnes
                             <div><b>Description :</b> {{ $campaign->description }}</div>
                             <div><b>Thème :</b> {{ $campaign->theme->name }}</div>
                             <div>
-                                [<a href="{{ route('details_campaign', $campaign->id) }}">Consulter</a>]
-                                [<a href="{{ route('update_campaign', $campaign->id) }}">Modifier</a>]
-                                [<a onclick="return confirm('Voulez-vous vraiment supprimer cette campagne ? Toutes les ' +
-                                 'sessions et personnages associés seront supprimée')" href="{{ route('delete_campaign', $campaign->id) }}">Supprimer</a>]
+                                <div class="btn btn-sm btn-primary">
+                                    <a href="{{ route('details_campaign', $campaign->id) }}">Consulter</a>
+                                </div>
+                                <div class="btn btn-sm btn-secondary">
+                                    <a href="{{ route('update_campaign', $campaign->id) }}">Modifier</a>
+                                </div>
+                                <div class="btn btn-sm btn-danger">
+                                    <a onclick="return confirm('Voulez-vous vraiment supprimer cette campagne ? Toutes les ' +
+                                 'sessions et personnages associés seront supprimée')" href="{{ route('delete_campaign', $campaign->id) }}">Supprimer</a>
+                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -50,9 +47,15 @@ Campagnes
                             <div><b>Thème :</b> {{ $character->campaign->theme->name }}</div>
                             <div><b>Maître du jeu :</b> {{ $character->campaign->owner->name }}</div>
                              <div>
-                                [<a href="{{ route('details_campaign', $character->campaign->id) }}">Consulter la campagne</a>]
-                                [<a href="{{ route('my-character', ['campaign_id' => $character->campaign->id, 'player_id' => Auth::user()->id ]) }}">Voir mon personnage</a>]
-                                [<a onclick="return confirm('Voulez-vous vraiment quitter la campagne?')" href="{{ route('delete_campaign', $character->campaign->id) }}">Quitter la campagne</a>]
+                                <div class="btn btn-sm btn-primary">
+                                     <a href="{{ route('details_campaign', $character->campaign->id) }}">Consulter la campagne</a>
+                                 </div>
+                                 <div class="btn btn-sm btn-secondary">
+                                     <a href="{{ route('my-character', ['campaign_id' => $character->campaign->id, 'player_id' => Auth::user()->id ]) }}">Voir mon personnage</a>
+                                 </div>
+                                 <div class="btn btn-sm btn-danger">
+                                     <a onclick="return confirm('Voulez-vous vraiment quitter la campagne?')" href="{{ route('delete_campaign', $character->campaign->id) }}">Quitter la campagne</a>
+                                 </div>
                             </div>
                         </div>
                     @endforeach
