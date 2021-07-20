@@ -25,12 +25,18 @@
                                 </div>
                                 <div class="btn btn-sm btn-primary">
                                     <a href="{{ route('my-character', ['campaign_id' => $character->campaign_id, 'player_id' => Auth::user()->id ])  }}">
-                                        Modifier le personnage
+                                        Modifier
                                     </a>
                                 </div>
                                 <div class="btn btn-sm btn-secondary">
                                     <a href="{{ route('details_campaign', $character->campaign->id) }}">
                                         Voir la campagne
+                                    </a>
+                                </div>
+                                <div class="btn btn-sm btn-danger">
+                                    <a onclick="return confirm('Voulez-vous vraiment supprimer le personnage ? Vous quitterez alors la campagne.')"
+                                       href="{{ route('delete_character', $character->id) }}">
+                                        Supprimer
                                     </a>
                                 </div>
                             </div>
