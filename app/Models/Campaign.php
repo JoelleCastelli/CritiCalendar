@@ -28,4 +28,8 @@ class Campaign extends Model
         return $this->hasMany(Character::class);
     }
 
+    public function invitations() {
+        return $this->hasMany(Invitation::class)->where('accepted', false);
+    }
+
 }

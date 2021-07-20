@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campaign;
+use App\Models\Invitation;
 use App\Models\Theme;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,13 +67,32 @@ class CampaignController extends Controller
     }
 
     function sendInvite(Request $request) {
-        $details = [
-            'body' => 'Vous avez reçu une invitation'
-        ];
-        \Mail::to($request->email)->send(new InvitationEmail($details));
+        // Create invitation
+        $invitation = new Invitation();
 
-        return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
-                         ->with('success', "L'invitation a été envoyée");
+        // Check if invitation has already been sent
+        $existingInvitation = $invitation->where([
+            ['email', '=', $request->email],
+            ['campaign_id', '=', $request->campaign_id]
+        ])->first();
 
+        if($existingInvitation) {
+            return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
+                ->with('error', "L'invitation a déjà été envoyée à ".$request->email);
+        } else {
+            // Create invitation
+            $invitation->email = $request->email;
+            $invitation->campaign_id = $request->campaign_id;
+            $invitation->save();
+
+            // Send invitation email
+            $details = [
+                'campaign' => Campaign::find($request->campaign_id),
+            ];
+            \Mail::to($request->email)->send(new InvitationEmail($details));
+
+            return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
+                ->with('success', "L'invitation a été envoyée à ".$request->email);
+        }
     }
 }
