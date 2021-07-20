@@ -69,6 +69,10 @@ class CampaignController extends Controller
     }
 
     function sendInvite(Request $request) {
+        if($request->email === Auth::user()->email) {
+            return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
+                ->with('error', "Vous ne pouvez pas vous inviter vous-même !");
+        }
         // Create invitation
         $invitation = new Invitation();
 
