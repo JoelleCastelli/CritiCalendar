@@ -156,17 +156,17 @@ Route::group(['middleware' => ['campaignOwner']], function () {
 
     Route::post(
         '/campagnes/inviter',
-        [CampaignController::class, 'sendInvite']
+        [InvitationController::class, 'sendInvite']
     )->middleware(['auth'])->name('send_invite');
 
     Route::get(
         '/campagnes/renvoyer-invitation/{campaign_id}/{email}',
-        [CampaignController::class, 'sendInviteAgain']
+        [InvitationController::class, 'sendInviteAgain']
     )->middleware(['auth'])->name('send_invite_again');
 
     Route::get(
         '/campagnes/supprimer-invitation/{campaign_id}/{email}',
-        [CampaignController::class, 'deleteInvite']
+        [InvitationController::class, 'deleteInvite']
     )->middleware(['auth'])->name('delete_invite');
 
     Route::get(
