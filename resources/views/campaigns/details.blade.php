@@ -80,6 +80,11 @@
                                 <div><b>Récapitulatif :</b> {{ $event->recap }}</div>
                             </div>
                         @endforeach
+                        <div class="btn btn-sm btn-primary">
+                            <a href="{{ route('new_event') }}">
+                                Ajouter une session
+                            </a>
+                        </div>
                     </div>
 
                 </div>
