@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Campaign;
 use App\Models\Character;
+use App\Models\Event;
 use App\Models\Theme;
 use Illuminate\Database\Seeder;
 use \App\Models\User;
@@ -19,19 +20,19 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        Schema::dropIfExists('posts');
 
         $this->call([
             UserSeeder::class,
             ThemeSeeder::class,
             CampaignSeeder::class,
             CharacterSeeder::class,
-            SessionSeeder::class
+            EventSeeder::class
         ]);
 
     }
 
     public function down()
     {
-        Schema::dropIfExists('posts');
     }
 }

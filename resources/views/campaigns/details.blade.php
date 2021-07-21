@@ -74,11 +74,12 @@
                     </div>
                     <div class="py-3 campaign-sessions">
                         <h3>Sessions</h3>
-                        @foreach ($campaign->sessions as $session)
+                        @foreach ($campaign->events as $event)
                             <div class="py-2">
-                                <div><b>Nom :</b> {{ $session->name }}</div>
-                                <div><b>Date :</b> {{ date('d/m/Y H:i', strtotime($session->date)) }}</div>
-                                <div><b>Récapitulatif :</b> {{ $session->recap }}</div>
+                                <div><b>Nom :</b> {{ $event->title }}</div>
+                                <div><b>Date du début :</b> {{ date('d/m/Y H:i', strtotime($event->start)) }}</div>
+                                <div><b>Date de fin :</b> {{ date('d/m/Y H:i', strtotime($event->end)) }}</div>
+                                <div><b>Récapitulatif :</b> {{ $event->recap }}</div>
                             </div>
                         @endforeach
                     </div>

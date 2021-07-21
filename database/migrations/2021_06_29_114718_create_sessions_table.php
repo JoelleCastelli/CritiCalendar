@@ -13,6 +13,17 @@ class CreateSessionsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('sessions');
+
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -23,15 +34,5 @@ class CreateSessionsTable extends Migration
             $table->integer('campaign_id');
             $table->timestamps();
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('sessions');
     }
 }

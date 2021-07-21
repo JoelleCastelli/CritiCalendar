@@ -3,18 +3,19 @@
 namespace Database\Factories;
 
 use App\Models\Campaign;
-use App\Models\Session;
+use App\Models\Event;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SessionFactory extends Factory
+class EventFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Session::class;
+    protected $model = Event::class;
 
     /**
      * Define the model's default state.
@@ -23,9 +24,11 @@ class SessionFactory extends Factory
      */
     public function definition()
     {
-        return [
-            'name' => $this->faker->word . ' ' . $this->faker->randomDigitNotNull,
-            'date' => $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = '+1 years', $timezone = 'Europe/Paris'),
+        return  [
+            'id' =>  Str::uuid(),
+            'title' => $this->faker->word . ' ' . $this->faker->randomDigitNotNull,
+            'start' => $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = '+1 years', $timezone = 'Europe/Paris'),
+            'end' => $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = '+1 years', $timezone = 'Europe/Paris'),
             'place' => 'Chez ' . User::all()->random()->name,
             'URL' => $this->faker->url,
             'recap' => $this->faker->paragraph(2),
