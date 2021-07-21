@@ -29,10 +29,10 @@
                             {!! Form::text('title') !!}<br><br>
 
                             {!! Form::label('start', 'Début de la session') !!}
-                            {!! Form::date('start', \Carbon\Carbon::now()) !!}
+                            <input type="datetime-local" name="start" value="{{ Carbon\Carbon::now()->format('Y-m-d\TH:i') }}">
 
                             {!! Form::label('end', 'Fin de la session') !!}
-                            {!! Form::date('end') !!}<br><br>
+                            <input type="datetime-local" name="end" value="{{ Carbon\Carbon::now()->addDay(1)->format('Y-m-d\TH:i') }}"><br><br>
 
                             {!! Form::label('place', 'Lieu de la session') !!}
                             {!! Form::text('place') !!}<br><br>

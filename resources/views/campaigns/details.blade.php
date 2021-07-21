@@ -91,7 +91,7 @@
                                 <div><b>Nom :</b> {{ $event->title }}</div>
                                 <div><b>Date du début :</b> {{ date('d/m/Y H:i', strtotime($event->start)) }}</div>
                                 <div><b>Date de fin :</b> {{ date('d/m/Y H:i', strtotime($event->end)) }}</div>
-                                <div><b>Récapitulatif :</b> {{ $event->recap }}</div>
+                                <div><b>Récapitulatif :</b> {{ $event->recap ?? "-" }}</div>
                             </div>
                         @endforeach
                         <div class="btn btn-sm btn-primary">
@@ -100,7 +100,7 @@
                             </a>
                         </div>
                     </div>
-
+                    @endif
                 </div>
             </div>
         </div>

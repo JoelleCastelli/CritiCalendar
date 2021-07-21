@@ -40,7 +40,7 @@ class EventController extends Controller
         $event->recap = $request->recap;
         $event->campaign_id = $request->campaign_id;
         $save = $event->save();
-        dd($event);
+
         if($save)
             return redirect()->route('save_event', ['campaign_id' => $request->campaign_id, 'event_id' => $event->id])->with('success', $msg);
         else
