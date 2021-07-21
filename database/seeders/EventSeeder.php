@@ -2,10 +2,10 @@
 
 
 namespace Database\Seeders;
-use App\Models\Sessions;
+use App\Models\Events;
 use Illuminate\Support\Str;
 
-class SessionsSeeder extends DatabaseSeeder
+class EventSeeder extends DatabaseSeeder
 {
 
     /**
@@ -16,7 +16,7 @@ class SessionsSeeder extends DatabaseSeeder
     public function run()
     {
 
-        Sessions::insert([
+        Events::insert([
             [
                 'id' => Str::uuid(),
                 'title' => 'Evenement 2',

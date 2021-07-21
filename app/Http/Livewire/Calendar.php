@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Sessions;
+use App\Models\Event;
 
 class Calendar extends Component
 {
@@ -11,7 +11,7 @@ class Calendar extends Component
 
     public function render()
     {
-        $this->events = json_encode(Sessions::all());
+        $this->events = json_encode(Event::all());
         return view('livewire.calendar');
     }
 }

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\Theme;
-use App\Models\Sessions;
+use App\Models\Events;
 use Illuminate\Database\Seeder;
 use \App\Models\User;
 use Illuminate\Support\Facades\Schema;
@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([SessionsSeeder::class,]);
         // \App\Models\User::factory(10)->create();
 
         $this->call([
@@ -27,7 +26,7 @@ class DatabaseSeeder extends Seeder
             ThemeSeeder::class,
             CampaignSeeder::class,
             CharacterSeeder::class,
-            SessionSeeder::class
+            EventSeeder::class
         ]);
 
     }
