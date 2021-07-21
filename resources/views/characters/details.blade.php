@@ -23,7 +23,7 @@
                     </div>
                         {!! Form::hidden('character_id', $character->id) !!}
 
-                        {!! Form::label('ancestry', 'Ancêtre') !!}
+                        {!! Form::label('ancestry', 'Ascendance') !!}
                         {!! Form::text('ancestry', $character->ancestry) !!}<br><br>
 
                         {!! Form::label('class', 'Classe') !!}

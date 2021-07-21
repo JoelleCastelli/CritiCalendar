@@ -50,7 +50,7 @@ class CharacterRequest extends FormRequest
         return [
             'character_id.required' => 'L\'ID de personnage est requis',
             'character_id.integer' => 'L\'ID de personnage doit être un nombre entier',
-            'ancestry.string' => 'Le champ "Ancêtre" doit être une chaîne de caractères',
+            'ancestry.string' => 'Le champ "Ascendance" doit être une chaîne de caractères',
             'class.string' => 'Le champ "Classe" doit être une chaîne de caractères',
             'alignment.string' => 'Le champ "Alignement" doit être une chaîne de caractères',
             'level.integer' => 'Le champ "Niveau" doit être un nombre entier',
