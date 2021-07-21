@@ -5,6 +5,7 @@ use App\Http\Controllers\FilmController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\EventController;
 use App\Models\Campaign;
 use App\Models\Theme;
 use Illuminate\Support\Facades\DB;
@@ -86,12 +87,6 @@ Route::get(
     '/films',
     [FilmController::class, 'index']
 )->middleware(['auth'])->name('films');
-
-// SESSION
-Route::get(
-    '/sessions/nouvelle-session',
-    [EventController::class, 'create']
-)->middleware(['auth'])->name('new_event');
 
 // CHARACTERS
 Route::get(
@@ -185,4 +180,16 @@ Route::group(['middleware' => ['campaignOwner']], function () {
         [CampaignController::class, 'removeCharacter']
     )->middleware(['auth'])->name('remove_character');
 
+
 });
+
+// EVENTS 
+Route::get(
+    'campaigns/{campaign_id}/sessions/{event_id?}/',
+    [EventController::class, 'display']
+)->middleware(['auth'])->name('display_event');
+
+Route::post(
+    'campaigns/{campaign_id}/sessions/{event_id?}/',
+    [EventController::class, 'saveEvent']
+)->middleware(['auth'])->name('save_event');

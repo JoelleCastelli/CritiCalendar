@@ -94,10 +94,10 @@
                                 <div><b>Récapitulatif :</b> {{ $event->recap }}</div>
                             </div>
                         @endforeach
-                    @endif
-
-                        <div class="btn btn-sm btn-primary my-2">
-                            <a href="">Créer une session</a>
+                        <div class="btn btn-sm btn-primary">
+                            <a href="{{ route('display_event', ['campaign_id' => $campaign->id]) }}">
+                                Ajouter une session
+                            </a>
                         </div>
                     </div>
 

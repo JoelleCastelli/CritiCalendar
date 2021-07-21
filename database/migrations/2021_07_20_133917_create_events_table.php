@@ -17,7 +17,7 @@ class CreateEventsTable extends Migration
             $table->uuid('id')->primary();
             $table->string('title');
             $table->string('start');
-            $table->string('end');
+            $table->string('end')->nullable();
             $table->string('place')->nullable();
             $table->string('URL')->nullable();
             $table->text('recap')->nullable();
