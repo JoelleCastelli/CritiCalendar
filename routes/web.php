@@ -21,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ROUTE TO DISPLAY LOGS
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -80,7 +83,7 @@ Route::get(
     [FilmController::class, 'index']
 )->middleware(['auth'])->name('films');
 
-// SESSION 
+// SESSION
 Route::get(
     '/sessions/nouvelle-session',
     [EventController::class, 'create']
