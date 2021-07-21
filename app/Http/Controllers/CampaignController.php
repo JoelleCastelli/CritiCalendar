@@ -67,7 +67,11 @@ class CampaignController extends Controller
 
     function details(Request $request) {
         $campaign = Campaign::find($request->campaign_id);
-        return view('campaigns.details', ['campaign' => $campaign]);
+
+        if(Auth::user()->id == $campaign->master_id)
+            return view('campaigns.details', ['campaign' => $campaign]);
+        else
+            return view('campaigns.details-not-owner', ['campaign' => $campaign]);
     }
 
     function removeCharacter(Request $request) {

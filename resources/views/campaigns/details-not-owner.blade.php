@@ -16,24 +16,9 @@
                         <div><b>Description :</b> {{ $campaign->description }}</div>
                         <div><b>Thème :</b> {{ $campaign->theme->name }}</div>
                         <div><b>Maître du jeu :</b> {{ $campaign->owner->name }}</div>
-                        @if($campaign->master_id == Auth::user()->id)
-                            <div class="btn btn-sm btn-danger">
-                                <a onclick="return confirm('Voulez-vous vraiment supprimer cette campagne ? Toutes les ' +
-                                     'sessions et personnages associés seront supprimés.')" href="{{ route('delete_campaign', $campaign->id) }}">
-                                    Supprimer la campagne
-                                </a>
-                            </div>
-                        @endif
                     </div>
                     <div class="py-3 players">
-                        <b>Inviter des joueurs</b>
-                        {!! Form::open(['route' => 'send_invite']) !!}
-                            {!! Form::hidden('campaign_id', $campaign->id) !!}
-                            {!! Form::label('email', 'Adresse e-mail') !!}
-                            {!! Form::text('email') !!}
-                            {!! Form::submit("Envoyer l'invitation") !!}
-                        {!! Form::close() !!}
-
+                        <b>Les joueurs invités</b>
                         {{--Invitations--}}
                         @if($campaign->invitations->count() > 0)
                             <div>
@@ -61,15 +46,7 @@
                         @if($campaign->characters->count() > 0)
                             <b>Joueurs :</b>
                             @foreach ($campaign->characters as $character)
-                                <div>
-                                    {!! $character->name ?? "<i>Personnage sans nom</i>" !!} (joué par {{ $character->player->name }})
-                                    <div class="btn btn-sm btn-danger">
-                                        <a onclick="return confirm('Voulez-vous vraiment supprimer ce personnage ?')"
-                                           href="{{ route('remove_character', ['campaign_id' => $campaign->id, 'character_id' => $character->id]) }}">
-                                            Retirer le joueur
-                                        </a>
-                                    </div>
-                                </div>
+                                <div>{{ $character->name }} (joué par {{ $character->player->name }})</div>
                             @endforeach
                         @endif
                     </div>
@@ -83,10 +60,6 @@
                                 <div><b>Récapitulatif :</b> {{ $event->recap }}</div>
                             </div>
                         @endforeach
-
-                        <div class="btn btn-sm btn-primary">
-                            <a href="">Créer une session</a>
-                        </div>
                     </div>
 
                 </div>

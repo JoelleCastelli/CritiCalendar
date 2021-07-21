@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Session;
+use App\Models\Event;
 use Illuminate\Database\Seeder;
 
-class SessionSeeder extends Seeder
+class EventSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +14,8 @@ class SessionSeeder extends Seeder
      */
     public function run()
     {
-        Session::factory()
+        Event::factory()
             ->count(30)
-            ->create();
+            ->create(); 
     }
 }

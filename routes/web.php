@@ -80,9 +80,13 @@ Route::get(
     [FilmController::class, 'index']
 )->middleware(['auth'])->name('films');
 
+// SESSION 
+Route::get(
+    '/sessions/nouvelle-session',
+    [EventController::class, 'create']
+)->middleware(['auth'])->name('new_event');
 
 // CHARACTERS
-
 Route::get(
     '/personnages',
     [CharacterController::class, 'index']
