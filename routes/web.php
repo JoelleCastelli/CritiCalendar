@@ -22,7 +22,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 // ROUTE TO DISPLAY LOGS
-Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+Route::get('logs',
+    '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index'
+)->middleware(['auth', 'admin'])->name('logs');
+
+
 
 Route::get('/', function () {
     return view('welcome');
