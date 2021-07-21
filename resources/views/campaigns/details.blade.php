@@ -17,7 +17,7 @@
                         <div><b>Thème :</b> {{ $campaign->theme->name }}</div>
                         <div><b>Maître du jeu :</b> {{ $campaign->owner->name }}</div>
                         @if($campaign->master_id == Auth::user()->id)
-                            <div class="btn btn-sm btn-danger">
+                            <div class="btn btn-sm btn-danger my-2">
                                 <a onclick="return confirm('Voulez-vous vraiment supprimer cette campagne ? Toutes les ' +
                                      'sessions et personnages associés seront supprimés.')" href="{{ route('delete_campaign', $campaign->id) }}">
                                     Supprimer la campagne
@@ -47,11 +47,13 @@
                                             @else
                                                 {{ $invitation->email }}
                                             @endif
-                                            <div class="btn btn-sm btn-primary">
-                                                <a href="{{ route('send_invite_again', ['campaign_id'=>$campaign->id, 'email'=>$invitation->email]) }}">Renvoyer l'invitation</a>
-                                            </div>
-                                            <div class="btn btn-sm btn-danger">
-                                                <a href="{{ route('delete_invite', ['campaign_id'=>$campaign->id, 'email'=>$invitation->email]) }}">Supprimer l'invitation</a>
+                                            <div class="my-1">
+                                                <div class="btn btn-sm btn-primary">
+                                                    <a href="{{ route('send_invite_again', ['campaign_id'=>$campaign->id, 'email'=>$invitation->email]) }}">Renvoyer l'invitation</a>
+                                                </div>
+                                                <div class="btn btn-sm btn-danger">
+                                                    <a href="{{ route('delete_invite', ['campaign_id'=>$campaign->id, 'email'=>$invitation->email]) }}">Supprimer l'invitation</a>
+                                                </div>
                                             </div>
                                         </li>
                                     @endforeach
@@ -66,17 +68,22 @@
                                 @foreach ($campaign->characters as $character)
                                     <li>
                                         {!! $character->name ?? "<i>Personnage sans nom</i>" !!} (joué par {{ $character->player->name }})
-                                        <div class="btn btn-sm btn-danger">
-                                            <a onclick="return confirm('Voulez-vous vraiment supprimer ce personnage ?')"
-                                               href="{{ route('remove_character', ['campaign_id' => $campaign->id, 'character_id' => $character->id]) }}">
-                                                Retirer le joueur
-                                            </a>
+                                        <div class="my-1">
+                                            <div class="btn btn-sm btn-danger">
+                                                <a onclick="return confirm('Voulez-vous vraiment supprimer ce personnage ?')"
+                                                   href="{{ route('remove_character', ['campaign_id' => $campaign->id, 'character_id' => $character->id]) }}">
+                                                    Retirer le joueur
+                                                </a>
+                                            </div>
                                         </div>
                                     </li>
                                 @endforeach
                             </ul>
                         @endif
                     </div>
+
+                    {{--Sessions--}}
+                    @if($campaign->characters->count() > 0)
                     <div class="py-3 campaign-sessions">
                         <h3>Sessions</h3>
                         @foreach ($campaign->events as $event)
@@ -87,8 +94,9 @@
                                 <div><b>Récapitulatif :</b> {{ $event->recap }}</div>
                             </div>
                         @endforeach
+                    @endif
 
-                        <div class="btn btn-sm btn-primary">
+                        <div class="btn btn-sm btn-primary my-2">
                             <a href="">Créer une session</a>
                         </div>
                     </div>

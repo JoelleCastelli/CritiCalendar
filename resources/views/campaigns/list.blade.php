@@ -17,7 +17,7 @@ Campagnes
                             <div><b>Nom :</b> {{ $campaign->name }}</div>
                             <div><b>Description :</b> {{ $campaign->description }}</div>
                             <div><b>Thème :</b> {{ $campaign->theme->name }}</div>
-                            <div>
+                            <div class="my-2">
                                 <div class="btn btn-sm btn-primary">
                                     <a href="{{ route('details_campaign', $campaign->id) }}">Consulter</a>
                                 </div>

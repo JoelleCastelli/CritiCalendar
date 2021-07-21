@@ -23,7 +23,7 @@
                                         <div><b>Maître du jeu :</b> {{ $character->campaign->owner->name }}</div>
                                     </div>
                                 </div>
-                                <div class="btn btn-sm btn-primary">
+                                <div class="btn btn-sm btn-primary my-2">
                                     <a href="{{ route('my-character', ['campaign_id' => $character->campaign_id, 'player_id' => Auth::user()->id ])  }}">
                                         Modifier
                                     </a>

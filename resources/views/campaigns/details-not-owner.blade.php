@@ -49,16 +49,22 @@
                             </ul>
                         @endif
                     </div>
+
+                    {{--Sessions--}}
                     <div class="py-3 campaign-sessions">
                         <h3>Sessions</h3>
-                        @foreach ($campaign->events as $event)
-                            <div class="py-2">
-                                <div><b>Nom :</b> {{ $event->title }}</div>
-                                <div><b>Date du début :</b> {{ date('d/m/Y H:i', strtotime($event->start)) }}</div>
-                                <div><b>Date de fin :</b> {{ date('d/m/Y H:i', strtotime($event->end)) }}</div>
-                                <div><b>Récapitulatif :</b> {{ $event->recap }}</div>
-                            </div>
-                        @endforeach
+                        @if($campaign->events->count() > 0)
+                            @foreach ($campaign->events as $event)
+                                <div class="py-2">
+                                    <div><b>Nom :</b> {{ $event->title }}</div>
+                                    <div><b>Date du début :</b> {{ date('d/m/Y H:i', strtotime($event->start)) }}</div>
+                                    <div><b>Date de fin :</b> {{ date('d/m/Y H:i', strtotime($event->end)) }}</div>
+                                    <div><b>Récapitulatif :</b> {{ $event->recap }}</div>
+                                </div>
+                            @endforeach
+                        @else
+                            <p>Aucune session n'a encore eu lieu</p>
+                        @endif
                     </div>
 
                 </div>
