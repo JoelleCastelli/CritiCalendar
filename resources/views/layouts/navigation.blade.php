@@ -18,7 +18,7 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('campaigns')" :active="request()->routeIs('campaigns')">
-                        Campagnes
+                        Mes campagnes
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -27,13 +27,13 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('wall')" :active="request()->routeIs('wall')">
-                        Personnages
+                    <x-nav-link :href="route('characters')" :active="request()->routeIs('characters')">
+                        Mes personnages
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('invitations_list')" :active="request()->routeIs('invitations_list')">
-                        Invitations
+                        Mes invitations
                     </x-nav-link>
                 </div>
             </div>

@@ -18,6 +18,7 @@ class CreateInvitationsTable extends Migration
             $table->string('email');
             $table->integer('campaign_id');
             $table->boolean('accepted')->default(false);
+            $table->integer('user_id')->default(false);
             $table->timestamps();
         });
     }

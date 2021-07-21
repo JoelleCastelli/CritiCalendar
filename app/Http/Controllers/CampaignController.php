@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CampaignRequest;
 use App\Models\Campaign;
-use App\Models\Invitation;
 use App\Models\Theme;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Mail\InvitationEmail;
 use App\Models\Character;
 
 class CampaignController extends Controller
 {
     function index()
     {
-        $ownedCampaigns = Campaign::where('master_id', Auth::user()->id)->get();
-        $characters = Auth::user()->characters; // get all characters linked to the connected user
+        $ownedCampaigns = Campaign::where('master_id', Auth::user()->id)->paginate(5);
+        $characters = Auth::user()->characters()->paginate(5); // get all characters linked to the connected user
         return view('campaigns.list', ['ownedCampaigns' => $ownedCampaigns, 'characters' => $characters]);
     }
 
@@ -30,7 +29,7 @@ class CampaignController extends Controller
         return view('campaigns.new', ['themes' => $themesArray]);
     }
 
-    public function saveCampaign(Request $request)
+    public function saveCampaign(CampaignRequest $request)
     {
         if(isset($request->campaign_id)) {
             $campaign = Campaign::find($request->campaign_id);
@@ -58,65 +57,28 @@ class CampaignController extends Controller
 
     function deleteCampaign(Request $request) {
         $campaign = Campaign::find($request->campaign_id);
+        // Delete associated items
         foreach ($campaign->sessions as $session) $session->delete();
+        foreach ($campaign->characters as $character) $character->delete();
+        foreach ($campaign->invitations as $invitation) $invitation->delete();
         $campaign->delete();
         return redirect()->route('campaigns')->with('success', 'La campagne a été supprimée');
     }
 
     function details(Request $request) {
         $campaign = Campaign::find($request->campaign_id);
-        return view('campaigns.details', ['campaign' => $campaign]);
+
+        if(Auth::user()->id == $campaign->master_id)
+            return view('campaigns.details', ['campaign' => $campaign]);
+        else
+            return view('campaigns.details-not-owner', ['campaign' => $campaign]);
     }
 
-    function sendInvite(Request $request) {
-        if($request->email === Auth::user()->email) {
-            return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
-                ->with('error', "Vous ne pouvez pas vous inviter vous-même !");
-        }
-        // Create invitation
-        $invitation = new Invitation();
-
-        // Check if invitation has already been sent
-        $existingInvitation = $invitation->where([
-            ['email', '=', $request->email],
-            ['campaign_id', '=', $request->campaign_id]
-        ])->first();
-
-        if($existingInvitation) {
-            return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
-                ->with('error', "L'invitation a déjà été envoyée à ".$request->email);
-        } else {
-            // Create invitation
-            $invitation->email = $request->email;
-            $invitation->campaign_id = $request->campaign_id;
-            $invitation->save();
-
-            // Send invitation email
-            $details = [
-                'campaign' => Campaign::find($request->campaign_id),
-            ];
-            \Mail::to($request->email)->send(new InvitationEmail($details));
-
-            return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
-                ->with('success', "L'invitation a été envoyée à ".$request->email);
-        }
-    }
-
-    function sendInviteAgain(Request $request) {
-        $details = [
-            'campaign' => Campaign::find($request->campaign_id),
-        ];
-        \Mail::to($request->email)->send(new InvitationEmail($details));
+    function removeCharacter(Request $request) {
+        $character = Character::find($request->character_id);
+        $character->delete();
 
         return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
-            ->with('success', "L'invitation a été envoyée une nouvelle fois à ".$request->email);
-    }
-
-    function deleteInvite(Request $request) {
-        $invitation = Invitation::firstWhere('email', $request->email)->where('campaign_id', $request->campaign_id);
-        $invitation->delete();
-
-        return redirect()->route('details_campaign', ['campaign_id' => $request->campaign_id])
-            ->with('success', "L'invitation a de ".$request->email." a bien été supprimée");
+            ->with('success', "Le personnage a bien été supprimé");
     }
 }

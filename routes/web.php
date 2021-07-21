@@ -80,13 +80,32 @@ Route::get(
     [FilmController::class, 'index']
 )->middleware(['auth'])->name('films');
 
+// SESSION 
+Route::get(
+    '/sessions/nouvelle-session',
+    [EventController::class, 'create']
+)->middleware(['auth'])->name('new_event');
 
 // CHARACTERS
+Route::get(
+    '/personnages',
+    [CharacterController::class, 'index']
+)->middleware(['auth'])->name('characters');
+
 Route::get(
     '/campaign/{campaign_id}/personnage/{player_id}',
     [CharacterController::class, 'details']
 )->middleware(['auth'])->name('my-character');
 
+Route::post(
+    '/personnages/modifier/{character_id}',
+    [CharacterController::class, 'update']
+)->middleware(['auth'])->name('update_character');
+
+Route::get(
+    '/personnages/supprimer/{character_id}',
+    [CharacterController::class, 'delete']
+)->middleware(['auth'])->name('delete_character');
 
 // CAMPAIGNS
 Route::get(
@@ -141,18 +160,23 @@ Route::group(['middleware' => ['campaignOwner']], function () {
 
     Route::post(
         '/campagnes/inviter',
-        [CampaignController::class, 'sendInvite']
+        [InvitationController::class, 'sendInvite']
     )->middleware(['auth'])->name('send_invite');
 
     Route::get(
         '/campagnes/renvoyer-invitation/{campaign_id}/{email}',
-        [CampaignController::class, 'sendInviteAgain']
+        [InvitationController::class, 'sendInviteAgain']
     )->middleware(['auth'])->name('send_invite_again');
 
     Route::get(
         '/campagnes/supprimer-invitation/{campaign_id}/{email}',
-        [CampaignController::class, 'deleteInvite']
+        [InvitationController::class, 'deleteInvite']
     )->middleware(['auth'])->name('delete_invite');
+
+    Route::get(
+        '/campagnes/supprimer-personnage/{character_id}/{campaign_id}',
+        [CampaignController::class, 'removeCharacter']
+    )->middleware(['auth'])->name('remove_character');
 
 });
 

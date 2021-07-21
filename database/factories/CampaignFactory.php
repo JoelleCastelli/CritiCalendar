@@ -24,7 +24,7 @@ class CampaignFactory extends Factory
     public function definition()
     {
         return [
-            'name' =>  implode(' ', $this->faker->words(2)),
+            'name' =>  ucwords(implode(' ', $this->faker->words(2))),
             'description' => $this->faker->paragraph(2),
             'theme_id' => Theme::all()->random()->id,
             'master_id' => User::all()->random()->id,

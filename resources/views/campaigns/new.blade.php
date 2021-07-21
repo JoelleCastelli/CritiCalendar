@@ -13,11 +13,11 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     {!! Form::open(['route' => 'save_campaign']) !!}
                         {!! Form::label('name', 'Nom') !!}
-                        {!! Form::text('name') !!}
+                        {!! Form::text('name') !!}<br><br>
                         {!! Form::label('description', 'Description') !!}
-                        {!! Form::text('description') !!}
+                        {!! Form::text('description') !!}<br><br>
                         {!! Form::label('theme_id', 'Thème') !!}
-                        {!! Form::select('theme_id', $themes) !!}
+                        {!! Form::select('theme_id', $themes) !!}<br><br>
                         {!! Form::submit('Valider') !!}
                     {!! Form::close() !!}
                 </div>

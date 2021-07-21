@@ -14,11 +14,11 @@
                     {!! Form::open(['route' => 'save_campaign']) !!}
                         {!! Form::hidden('campaign_id', $campaign->id) !!}
                         {!! Form::label('name', 'Nom') !!}
-                        {!! Form::text('name', $campaign->name) !!}
+                        {!! Form::text('name', $campaign->name) !!}<br><br>
                         {!! Form::label('description', 'Description') !!}
-                        {!! Form::text('description', $campaign->description) !!}
+                        {!! Form::text('description', $campaign->description) !!}<br><br>
                         {!! Form::label('theme_id', 'Thème') !!}
-                        {!! Form::select('theme_id', $themes, $campaign->theme_id) !!}
+                        {!! Form::select('theme_id', $themes, $campaign->theme_id) !!}<br><br>
                         {!! Form::submit('Valider') !!}
                     {!! Form::close() !!}
                 </div>
