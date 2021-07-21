@@ -17,10 +17,10 @@ class CreateEventsTable extends Migration
             $table->uuid('id')->primary();
             $table->string('title');
             $table->string('start');
-            $table->string('end')->nullable();
-            $table->string('place');
-            $table->string('URL');
-            $table->text('recap');
+            $table->string('end');
+            $table->string('place')->nullable();
+            $table->string('URL')->nullable();
+            $table->text('recap')->nullable();
             $table->integer('campaign_id');
         });
     }
