@@ -19,9 +19,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        Schema::dropIfExists('posts');
-
         $this->call([
             UserSeeder::class,
             ThemeSeeder::class,
@@ -29,7 +26,6 @@ class DatabaseSeeder extends Seeder
             CharacterSeeder::class,
             EventSeeder::class
         ]);
-
     }
 
     public function down()
