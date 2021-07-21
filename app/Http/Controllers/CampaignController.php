@@ -58,9 +58,12 @@ class CampaignController extends Controller
     function deleteCampaign(Request $request) {
         $campaign = Campaign::find($request->campaign_id);
         // Delete associated items
-        foreach ($campaign->sessions as $session) $session->delete();
-        foreach ($campaign->characters as $character) $character->delete();
-        foreach ($campaign->invitations as $invitation) $invitation->delete();
+        if($campaign->sessions)
+            foreach ($campaign->sessions as $session) $session->delete();
+        if($campaign->characters)
+            foreach ($campaign->characters as $character) $character->delete();
+        if($campaign->invitations)
+            foreach ($campaign->invitations as $invitation) $invitation->delete();
         $campaign->delete();
         return redirect()->route('campaigns')->with('success', 'La campagne a été supprimée');
     }

@@ -32,7 +32,7 @@ Campagnes
                         </div>
                     @endforeach
                     {{ $ownedCampaigns->links() }}
-                    <div class="btn btn-sm btn-primary">
+                    <div class="btn btn-sm btn-primary my-2">
                         <a href="{{ route('new_campaign') }}">Créer une nouvelle campagne</a>
                     </div>
                 </div>
@@ -49,7 +49,7 @@ Campagnes
                             <div><b>Description :</b> {{ $character->campaign->description }}</div>
                             <div><b>Thème :</b> {{ $character->campaign->theme->name }}</div>
                             <div><b>Maître du jeu :</b> {{ $character->campaign->owner->name }}</div>
-                             <div>
+                             <div class="my-2">
                                  <div class="btn btn-sm btn-primary">
                                      <a href="{{ route('details_campaign', $character->campaign->id) }}">Consulter la campagne</a>
                                  </div>
