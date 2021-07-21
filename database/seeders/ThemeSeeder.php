@@ -23,19 +23,28 @@ class ThemeSeeder extends Seeder
                 'name' => 'Horreur'
             ],
             [
-                'name' => 'Fantaisie'
+                'name' => 'Fantasy'
             ],
             [
-                'name' => 'Guerre'
+                'name' => 'Space Opera'
             ],
             [
                 'name' => 'Dystopie'
             ],
             [
-                'name' => 'Utopie'
+                'name' => 'Steampunk'
             ],
             [
-                'name' => 'Aventure'
+                'name' => 'Cyberpunk'
+            ],
+            [
+                'name' => 'Post-apocalyptique'
+            ],
+            [
+                'name' => 'Contemporain'
+            ],
+            [
+                'name' => 'Autre'
             ]
         ];
 
