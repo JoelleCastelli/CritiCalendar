@@ -18,36 +18,35 @@
                         <div><b>Maître du jeu :</b> {{ $campaign->owner->name }}</div>
                     </div>
                     <div class="py-3 players">
-                        <b>Les joueurs invités</b>
                         {{--Invitations--}}
                         @if($campaign->invitations->count() > 0)
                             <div>
                                 <b>Invitations en attente :</b>
-                                @foreach ($campaign->invitations as $invitation)
-                                    <div>
-                                        @if($invitation->user_id)
-                                            {{ \App\Models\User::find($invitation->user_id)->name }}
-                                            ({{ $invitation->email }})
-                                        @else
-                                            {{ $invitation->email }}
-                                        @endif
-                                        <div class="btn btn-sm btn-primary">
-                                            <a href="{{ route('send_invite_again', ['campaign_id'=>$campaign->id, 'email'=>$invitation->email]) }}">Renvoyer l'invitation</a>
-                                        </div>
-                                        <div class="btn btn-sm btn-danger">
-                                            <a href="{{ route('delete_invite', ['campaign_id'=>$campaign->id, 'email'=>$invitation->email]) }}">Supprimer l'invitation</a>
-                                        </div>
-                                    </div>
-                                @endforeach
+                                <ul style="list-style: inside;">
+                                    @foreach ($campaign->invitations as $invitation)
+                                        <li>
+                                            @if($invitation->user_id)
+                                                {{ \App\Models\User::find($invitation->user_id)->name }}
+                                                ({{ $invitation->email }})
+                                            @else
+                                                {{ $invitation->email }}
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
                         @endif
 
                         {{--Characters and players--}}
                         @if($campaign->characters->count() > 0)
                             <b>Joueurs :</b>
-                            @foreach ($campaign->characters as $character)
-                                <div>{{ $character->name }} (joué par {{ $character->player->name }})</div>
-                            @endforeach
+                            <ul style="list-style: inside;">
+                                @foreach ($campaign->characters as $character)
+                                    <li>
+                                        {!! $character->name ?? "<i>Personnage sans nom</i>" !!} (joué par {{ $character->player->name }})
+                                    </li>
+                                @endforeach
+                            </ul>
                         @endif
                     </div>
                     <div class="py-3 campaign-sessions">
