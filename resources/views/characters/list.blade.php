@@ -12,36 +12,41 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="characters-list">
-                        @foreach ($characters as $character)
-                            <div class="py-3 border-b border-gray-200">
-                                <div><b>Nom du personnage :</b> {!! $character->name ?? "<i>Personnage sans nom</i>" !!}</div>
-                                <div>
-                                    <b>Campagne : </b> {{ $character->campaign->name }}
+                        <h3>Mes personnages</h3>
+                        @if($characters->count() > 0)
+                            @foreach ($characters as $character)
+                                <div class="py-3 border-b border-gray-200">
+                                    <div><b>Nom du personnage :</b> {!! $character->name ?? "<i>Personnage sans nom</i>" !!}</div>
                                     <div>
-                                        <div><b>Description :</b> {{ $character->campaign->description }}</div>
-                                        <div><b>Thème :</b> {{ $character->campaign->theme->name }}</div>
-                                        <div><b>Maître du jeu :</b> {{ $character->campaign->owner->name }}</div>
+                                        <b>Campagne : </b> {{ $character->campaign->name }}
+                                        <div>
+                                            <div><b>Description :</b> {{ $character->campaign->description }}</div>
+                                            <div><b>Thème :</b> {{ $character->campaign->theme->name }}</div>
+                                            <div><b>Maître du jeu :</b> {{ $character->campaign->owner->name }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="btn btn-sm btn-primary my-2">
+                                        <a href="{{ route('my-character', ['campaign_id' => $character->campaign_id, 'player_id' => Auth::user()->id ])  }}">
+                                            Modifier
+                                        </a>
+                                    </div>
+                                    <div class="btn btn-sm btn-secondary">
+                                        <a href="{{ route('details_campaign', $character->campaign->id) }}">
+                                            Voir la campagne
+                                        </a>
+                                    </div>
+                                    <div class="btn btn-sm btn-danger">
+                                        <a onclick="return confirm('Voulez-vous vraiment supprimer le personnage ? Vous quitterez alors la campagne.')"
+                                           href="{{ route('delete_character', $character->id) }}">
+                                            Supprimer
+                                        </a>
                                     </div>
                                 </div>
-                                <div class="btn btn-sm btn-primary my-2">
-                                    <a href="{{ route('my-character', ['campaign_id' => $character->campaign_id, 'player_id' => Auth::user()->id ])  }}">
-                                        Modifier
-                                    </a>
-                                </div>
-                                <div class="btn btn-sm btn-secondary">
-                                    <a href="{{ route('details_campaign', $character->campaign->id) }}">
-                                        Voir la campagne
-                                    </a>
-                                </div>
-                                <div class="btn btn-sm btn-danger">
-                                    <a onclick="return confirm('Voulez-vous vraiment supprimer le personnage ? Vous quitterez alors la campagne.')"
-                                       href="{{ route('delete_character', $character->id) }}">
-                                        Supprimer
-                                    </a>
-                                </div>
-                            </div>
-                        @endforeach
-                        {{ $characters->links() }}
+                            @endforeach
+                            {{ $characters->links() }}
+                        @else
+                            <p class="mt-3">Vous ne participez à aucune campagne et n'avez donc aucun personnage</p>
+                        @endif
                     </div>
                 </div>
             </div>

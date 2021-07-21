@@ -32,7 +32,7 @@
                         @endforeach
                         {{ $invitations->links() }}
                     @else
-                        <p>Vous n'avez aucune invitation en attente</p>
+                        <p class="mt-3">Vous n'avez aucune invitation en attente</p>
                     @endif
                 </div>
             </div>
