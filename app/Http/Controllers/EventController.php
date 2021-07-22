@@ -62,7 +62,7 @@ class EventController extends Controller
                     'event' => $event,
                 ];
 
-                //Mail::to($emails)->send(new EventEmail($details));
+                Mail::to($emails)->send(new EventEmail($details));
             }
             return redirect()->route('details_campaign', $campaign->id)->with('success', $msg);
         }
