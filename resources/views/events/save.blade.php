@@ -17,7 +17,7 @@
                             {!! $campaign->name !!}
 
                             <h2 style="font-weight:bold" >Description : </h2>
-                            {!! Str::limit($campaign->description, 50) !!}
+                            {!! Str::limit($campaign->description, 150) !!}
                         </p>
                     </div>
                     <div class="session-create">
