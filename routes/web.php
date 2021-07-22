@@ -5,6 +5,7 @@ use App\Http\Controllers\FilmController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\DashboardController;
 use App\Models\Campaign;
 use App\Models\Theme;
 use Illuminate\Support\Facades\DB;
@@ -37,9 +38,10 @@ Route::get('/test', function () {
 })->middleware(['auth'])->name('test');
 
 
-Route::get('/dashboard', function () {
-    return view ('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get(
+    '/dashboard',
+    [DashboardController::class, 'index']
+)->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 

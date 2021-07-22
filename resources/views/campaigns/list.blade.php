@@ -11,7 +11,7 @@ Campagnes
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <h3>Campagnes Maître du Jeu</h3>
+                    <h3>Campagnes masterisées</h3>
                     @if($ownedCampaigns->count() > 0)
                         @foreach ($ownedCampaigns as $campaign)
                             <div class="py-2 border-b border-gray-200">
@@ -34,7 +34,7 @@ Campagnes
                         @endforeach
                         {{ $ownedCampaigns->links() }}
                     @else
-                        <p class="mt-3">Vous ne gérez aucune campagne</p>
+                        <p class="mt-3">Vous ne masterisez aucune campagne</p>
                     @endif
                     <div class="btn btn-sm btn-primary mt-3">
                         <a href="{{ route('new_campaign') }}">Créer une nouvelle campagne</a>
@@ -46,7 +46,7 @@ Campagnes
         <div class="py-5 max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <h3>Campagnes Joueur</h3>
+                    <h3>Campagnes jouées</h3>
                     @if($characters->count() > 0)
                         @foreach ($characters as $character)
                             <div class="py-2 border-b border-gray-200">
