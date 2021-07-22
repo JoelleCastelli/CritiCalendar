@@ -54,6 +54,9 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <x-dropdown-link :href="route('settings')">
+                            Paramètres
+                        </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -64,9 +67,6 @@
                                 {{ __('Log out') }}
                             </x-dropdown-link>
                         </form>
-                        <x-dropdown-link :href="route('settings')">
-                            Paramètres
-                        </x-dropdown-link>
                     </x-slot>
                 </x-dropdown>
             </div>
@@ -107,6 +107,10 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <x-responsive-nav-link :href="route('settings')">
+                    Paramètres
+                </x-responsive-nav-link>
+
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -117,10 +121,6 @@
                         {{ __('Log out') }}
                     </x-responsive-nav-link>
                 </form>
-
-                <x-responsive-nav-link :href="route('settings')">
-                    Paramètres
-                </x-dropdown-link>
             </div>
         </div>
     </div>
