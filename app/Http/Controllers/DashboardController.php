@@ -15,6 +15,7 @@ class DashboardController extends Controller
 {
     function index()
     {
+        
         $data = [
             'gmCount' => Campaign::where('master_id', Auth::user()->id)->count(),
             'charactersCount' => Auth::user()->characters->count(),

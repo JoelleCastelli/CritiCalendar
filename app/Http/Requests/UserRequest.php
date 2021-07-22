@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'current_password' => 'required',
+            'name' => 'required|string',
             'email' => ['required',
                         Rule::unique('users')->ignore(Auth::user()->id),
                         'email:rfc,dns'
