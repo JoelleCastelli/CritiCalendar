@@ -7,7 +7,10 @@ use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EventController;
 use App\Models\Campaign;
+use App\Models\Event;
+use Illuminate\Http\Request;
 use App\Models\Theme;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -98,12 +101,6 @@ Route::get(
     [FilmController::class, 'index']
 )->middleware(['auth'])->name('films');
 
-// SESSION
-Route::get(
-    '/sessions/nouvelle-session',
-    [EventController::class, 'create']
-)->middleware(['auth'])->name('new_event');
-
 // CHARACTERS
 Route::get(
     '/personnages',
@@ -166,6 +163,8 @@ Route::get(
 
 // ONLY ACCESSIBLE TO CAMPAIGN OWNERS
 Route::group(['middleware' => ['campaignOwner']], function () {
+
+    // CAMPAIGNS
     Route::get(
         '/campagnes/modifier/{campaign_id}',
         [CampaignController::class, 'updateCampaign']
@@ -176,6 +175,8 @@ Route::group(['middleware' => ['campaignOwner']], function () {
         [CampaignController::class, 'deleteCampaign']
     )->middleware(['auth'])->name('delete_campaign');
 
+
+    // INVITATIONS
     Route::post(
         '/campagnes/inviter',
         [InvitationController::class, 'sendInvite']
@@ -191,9 +192,27 @@ Route::group(['middleware' => ['campaignOwner']], function () {
         [InvitationController::class, 'deleteInvite']
     )->middleware(['auth'])->name('delete_invite');
 
+
+    // CHARACTERS
     Route::get(
         '/campagnes/supprimer-personnage/{character_id}/{campaign_id}',
         [CampaignController::class, 'removeCharacter']
     )->middleware(['auth'])->name('remove_character');
 
+
+    // EVENTS
+    Route::get(
+        'campaigns/{campaign_id}/sessions/{event_id?}/',
+        [EventController::class, 'display']
+    )->middleware(['auth'])->name('display_event');
+
+    Route::get('/campaigns/{campaign_id}/sessions/{event_id}/supprimer', function (Request $request) {
+        Event::Find($request->event_id)->delete();
+        return redirect()->back()->with('success', 'La session a bien été supprimée');
+    })->middleware(['auth'])->name('delete_event');
+
+    Route::post(
+        'campaigns/{campaign_id}/sessions/{event_id?}/',
+        [EventController::class, 'saveEvent']
+    )->middleware(['auth'])->name('save_event');
 });
