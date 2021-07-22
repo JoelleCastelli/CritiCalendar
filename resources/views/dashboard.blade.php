@@ -30,18 +30,22 @@
                     <div class="my-2">
                         <h3>Prochaine session</h3>
                     </div>
-                    <div class="my-2">
-                        <p>
-                            <span class="font-weight-bold">Titre : </span> {{ $data['nextSession']->title }}<br>
-                            <span class="font-weight-bold">Date : </span> {{  Carbon\Carbon::createFromTimeString($data['nextSession']->start)->format('d/m/Y H:i') }}<br>
-                            <span class="font-weight-bold">Campagne : </span> {{ $data['nextSession']->campaign->name }}<br>
-                        </p>
-                    </div>
-                    <div class="my-2">
-                        <div class="btn btn-primary btn-sm">
-                            <a href="{{ route('details_campaign', ['campaign_id' => $data['nextSession']->campaign->id]) }}">Voir la campagne</a>
+                    @if(!empty($data['nextSession']))
+                        <div class="my-2">
+                            <p>
+                                <span class="font-weight-bold">Titre : </span> {{ $data['nextSession']->title }}<br>
+                                <span class="font-weight-bold">Date : </span> {{  Carbon\Carbon::createFromTimeString($data['nextSession']->start)->format('d/m/Y H:i') }}<br>
+                                <span class="font-weight-bold">Campagne : </span> {{ $data['nextSession']->campaign->name }}<br>
+                            </p>
                         </div>
-                    </div>
+                        <div class="my-2">
+                            <div class="btn btn-primary btn-sm">
+                                <a href="{{ route('details_campaign', ['campaign_id' => $data['nextSession']->campaign->id]) }}">Voir la campagne</a>
+                            </div>
+                        </div>
+                    @else
+                        <p class="my-2">Aucune session n'est prévue</p>
+                    @endif
                 </div>
             </div>
 

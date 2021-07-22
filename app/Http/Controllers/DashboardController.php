@@ -18,15 +18,17 @@ class DashboardController extends Controller
         foreach (Auth::user()->characters as $character) {
             $campaignsId[] = $character->campaign->id;
         }
-        $nextSession = Event::whereIn('id', $campaignsId)
-                            ->whereDate('start', '>=', Carbon::now()->format('Y-m-d\TH:i'))
-                            ->orderBy('start')->first();
+        if(!empty($campaignsId)) {
+            $nextSession = Event::whereIn('id', $campaignsId)
+                ->whereDate('start', '>=', Carbon::now()->format('Y-m-d\TH:i'))
+                ->orderBy('start')->first();
+        }
 
         $data = [
             'gmCount' => Campaign::where('master_id', Auth::user()->id)->count(),
             'charactersCount' => Auth::user()->characters->count(),
             'invitationsCount' => Invitation::where('user_id', Auth::user()->id)->count(),
-            'nextSession' => $nextSession,
+            'nextSession' => $nextSession ?? null,
         ];
 
         $adminData = [
