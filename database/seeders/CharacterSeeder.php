@@ -20,7 +20,7 @@ class CharacterSeeder extends Seeder
     {
         $faker = Factory::create();
 
-        for ($i = 0; $i <= Campaign::all()->count() * 5; $i++) {
+        for ($i = 0; $i <= Campaign::all()->count() * 30; $i++) {
             $campaign =  Campaign::all()->random();
 
             // Make sure that the player is not the campaign owner and plays only one character
