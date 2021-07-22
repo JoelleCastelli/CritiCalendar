@@ -64,17 +64,17 @@ Route::get(
 Route::get(
     '/campagnes/{campaign_id}/personnage/{player_id}',
     [CharacterController::class, 'details']
-)->middleware(['auth'])->name('my-character');
+)->middleware(['auth', 'canAccessCampaign', 'isPlayer'])->name('my-character');
 
 Route::post(
     '/personnages/modifier/{character_id}',
     [CharacterController::class, 'update']
-)->middleware(['auth'])->name('update_character');
+)->middleware(['auth', 'isCharacter'])->name('update_character');
 
 Route::get(
     '/personnages/supprimer/{character_id}',
     [CharacterController::class, 'delete']
-)->middleware(['auth'])->name('delete_character');
+)->middleware(['auth', 'isCharacter'])->name('delete_character');
 
 
 // CAMPAIGNS

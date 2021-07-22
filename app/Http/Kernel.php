@@ -65,5 +65,7 @@ class Kernel extends HttpKernel
         'campaignOwner' => \App\Http\Middleware\IsCampaignOwner::class,
         'admin' => \App\Http\Middleware\Admin::class,
         'canAccessCampaign' => \App\Http\Middleware\CanAccessCampaign::class,
+        'isCharacter' => \App\Http\Middleware\isCharacter::class,
+        'isPlayer' => \App\Http\Middleware\isPlayer::class,
     ];
 }
