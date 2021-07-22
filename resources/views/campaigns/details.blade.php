@@ -99,7 +99,7 @@
                                 </a>
                             </div>
                             <div class="btn btn-sm btn-danger">
-                                <a href="{{ route('elete_event', ['event_id' => $event->id_event]) }}">
+                                <a href="{{ route('event_delete', $event->id_event) }}">
                                     Supprimer une session
                                 </a>
                             </div>

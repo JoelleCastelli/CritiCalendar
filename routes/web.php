@@ -191,7 +191,16 @@ Route::get(
     [EventController::class, 'display']
 )->middleware(['auth'])->name('display_event');
 
-Route::get('sessions/{event_id}/supprimer',[EventController::class, 'delete'])->middleware(['auth'])->name('elete_event');
+Route::get(
+    'sessions/{event_id}/supprimer',
+    [EventController::class, 'delete']
+)->middleware(['auth'])->name('event_delete');
+
+Route::get('sessions/{event_id}/supprimer',function(Request $request){
+
+    Event::Find($request->event_id)->delete();
+
+})->middleware(['auth'])->name('delete_event');
 
 Route::post(
     'campaigns/{campaign_id}/sessions/{event_id?}/',
