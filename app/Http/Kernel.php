@@ -64,5 +64,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'campaignOwner' => \App\Http\Middleware\IsCampaignOwner::class,
         'admin' => \App\Http\Middleware\Admin::class,
+        'canAccessCampaign' => \App\Http\Middleware\CanAccessCampaign::class,
     ];
 }

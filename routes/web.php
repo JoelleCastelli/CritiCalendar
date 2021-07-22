@@ -96,7 +96,7 @@ Route::post(
 Route::get(
     '/campagnes/details/{campaign_id}',
     [CampaignController::class, 'details']
-)->middleware(['auth'])->name('details_campaign');
+)->middleware(['auth', 'canAccessCampaign'])->name('details_campaign');
 
 
 // INVITATIONS
