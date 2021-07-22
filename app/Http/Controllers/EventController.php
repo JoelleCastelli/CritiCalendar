@@ -49,9 +49,4 @@ class EventController extends Controller
 
     }
 
-    public function delete(Request $request) // quit the campaign
-    {
-        Event::Find($request->event_id)->delete();
-        echo "yes";
-    }
 }
