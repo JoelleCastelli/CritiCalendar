@@ -7,6 +7,8 @@ use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\EventController;
 use App\Models\Campaign;
+use App\Models\Event;
+use Illuminate\Http\Request;
 use App\Models\Theme;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -188,6 +190,8 @@ Route::get(
     'campaigns/{campaign_id}/sessions/{event_id?}/',
     [EventController::class, 'display']
 )->middleware(['auth'])->name('display_event');
+
+Route::get('sessions/{event_id}/supprimer',[EventController::class, 'delete'])->middleware(['auth'])->name('elete_event');
 
 Route::post(
     'campaigns/{campaign_id}/sessions/{event_id?}/',

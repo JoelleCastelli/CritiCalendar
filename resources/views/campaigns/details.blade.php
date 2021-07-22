@@ -93,14 +93,26 @@
                                 <div><b>Date de fin :</b> {{ date('d/m/Y H:i', strtotime($event->end)) }}</div>
                                 <div><b>Récapitulatif :</b> {{ $event->recap ?? "-" }}</div>
                             </div>
+                            <div class="btn btn-sm btn-warning">
+                                <a href="{{ route('display_event', ['campaign_id' => $campaign->id, 'event_id' => $event->id_event]) }}">
+                                    Modifier une session
+                                </a>
+                            </div>
+                            <div class="btn btn-sm btn-danger">
+                                <a href="{{ route('elete_event', ['event_id' => $event->id_event]) }}">
+                                    Supprimer une session
+                                </a>
+                            </div>
                         @endforeach
-                        <div class="btn btn-sm btn-primary">
-                            <a href="{{ route('display_event', ['campaign_id' => $campaign->id]) }}">
-                                Ajouter une session
-                            </a>
-                        </div>
+                       
                     </div>
+                    
                     @endif
+                     <div class="btn btn-sm btn-primary">
+                        <a href="{{ route('display_event', ['campaign_id' => $campaign->id]) }}">
+                            Ajouter une session
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

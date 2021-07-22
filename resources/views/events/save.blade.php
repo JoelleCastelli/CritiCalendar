@@ -21,27 +21,27 @@
                         </p>
                     </div>
                     <div class="session-create">
-                        {!! Form::open(['route' => ['save_event', ['campaign_id' => $campaign->id]]]) !!}
+                        {!! Form::open(['route' => ['save_event', ['campaign_id' => $campaign->id, 'event_id' => $event->id_event ?? '']]]) !!}
 
                             {!! Form::hidden('campaign_id', $campaign->id) !!}<br><br>
 
                             {!! Form::label('title', 'Nom de la session') !!}
-                            {!! Form::text('title') !!}<br><br>
+                            {!! Form::text('title', $event->title ?? '') !!}<br><br>
 
                             {!! Form::label('start', 'Début de la session') !!}
-                            <input type="datetime-local" name="start" value="{{ Carbon\Carbon::now()->format('Y-m-d\TH:i') }}">
+                            <input type="datetime-local" name="start" value="{{ !empty($event->start) ? Carbon\Carbon::createFromTimeString($event->start)->format('Y-m-d\TH:s') : Carbon\Carbon::now()->format('Y-m-d\TH:i') }}">
 
                             {!! Form::label('end', 'Fin de la session') !!}
-                            <input type="datetime-local" name="end" value="{{ Carbon\Carbon::now()->addDay(1)->format('Y-m-d\TH:i') }}"><br><br>
+                            <input type="datetime-local" name="end" value="{{ !empty($event->end) ? Carbon\Carbon::createFromTimeString($event->end)->format('Y-m-d\TH:s') : Carbon\Carbon::now()->format('Y-m-d\TH:i') }}"><br><br>
 
                             {!! Form::label('place', 'Lieu de la session') !!}
-                            {!! Form::text('place') !!}<br><br>
+                            {!! Form::text('place', $event->place ?? '' ) !!}<br><br>
 
                             {!! Form::label('URL', 'URL de la session') !!}
-                            {!! Form::text('URL') !!}<br><br>
+                            {!! Form::text('URL', $event->URL ?? '') !!}<br><br>
 
                             {!! Form::label('recap', 'Récapitulatif') !!}
-                            {!! Form::textarea('recap') !!}<br><br>
+                            {!! Form::textarea('recap', $event->recap ?? '') !!}<br><br>
 
                             {!! Form::submit('Créer la session') !!}
                         {!! Form::close() !!}

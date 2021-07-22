@@ -5,16 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EventRequest;
 use App\Models\Campaign;
 use App\Models\Event;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+
 class EventController extends Controller
 {
     public Campaign $campaign;
     public Event $event;
 
-
     function display(Request $request)
     {
+
         $campaign = Campaign::Find($request->campaign_id);
         $event = Event::Find($request->event_id);
         return view('events.save', ['event' => $event, 'campaign' => $campaign]);
@@ -23,7 +25,7 @@ class EventController extends Controller
     function saveEvent(EventRequest $request)
     {
         if (isset($request->event_id)) {
-            $event = Event::find($request->event_id);
+            $event = Event::Find($request->event_id);
             $msg = "La session a été mise à jour";
         } else {
             $event = new Event();
@@ -40,11 +42,16 @@ class EventController extends Controller
         $event->recap = $request->recap;
         $event->campaign_id = $request->campaign_id;
         $save = $event->save();
+        $campaign = Campaign::Find($request->campaign_id);
 
         if($save)
-            return redirect()->route('save_event', ['campaign_id' => $request->campaign_id, 'event_id' => $event->id])->with('success', $msg);
-        else
-            return redirect()->route('save_event', ['campaign_id' => $request->campaign_id])->with('error', "Oops ! Problème avec la bdd"); 
+            return redirect()->route('display_event', ['campaign_id' => $campaign->id, 'event_id' => $event->id_event])->with('success', $msg);
 
+    }
+
+    public function delete(Request $request) // quit the campaign
+    {
+        Event::Find($request->event_id)->delete();
+        echo "yes";
     }
 }
