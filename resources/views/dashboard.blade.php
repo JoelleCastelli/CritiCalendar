@@ -34,7 +34,7 @@
                         <p>
                             <span class="font-weight-bold">Titre : </span> {{ $data['nextSession']->title }}<br>
                             <span class="font-weight-bold">Date : </span> {{  Carbon\Carbon::createFromTimeString($data['nextSession']->start)->format('d/m/Y H:i') }}<br>
-                            <span class="font-weight-bold">Titre de la campagne : </span> {{ $data['nextSession']->campaign->name }}<br>
+                            <span class="font-weight-bold">Campagne : </span> {{ $data['nextSession']->campaign->name }}<br>
                         </p>
                     </div>
                     <div class="my-2">
