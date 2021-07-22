@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EventRequest;
 use App\Models\Campaign;
 use App\Models\Event;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 

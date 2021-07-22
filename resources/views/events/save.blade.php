@@ -29,10 +29,10 @@
                             {!! Form::text('title', $event->title ?? '') !!}<br><br>
 
                             {!! Form::label('start', 'Début de la session') !!}
-                            <input type="datetime-local" name="start" value="{{ !empty($event->start) ? Carbon\Carbon::createFromTimeString($event->start)->format('d-m-Y H:s') : Carbon\Carbon::now()->format('d-m-Y H:i') }}">
+                            <input type="datetime-local" name="start" value="{{ !empty($event->start) ? Carbon\Carbon::createFromTimeString($event->start)->format('d/m/Y H:i') : Carbon\Carbon::now()->format('d/m/Y H:i') }}">
                             <br><br>
                             {!! Form::label('end', 'Fin de la session') !!}
-                            <input type="datetime-local" name="end" value="{{ !empty($event->end) ? Carbon\Carbon::createFromTimeString($event->end)->format('d-m-Y H:s') : Carbon\Carbon::now()->format('d-m-Y H:i') }}"><br><br>
+                            <input type="datetime-local" name="end" value="{{ !empty($event->end) ? Carbon\Carbon::createFromTimeString($event->end)->format('d/m/Y H:i') : Carbon\Carbon::now()->format('d/m/Y H:i') }}"><br><br>
 
                             {!! Form::label('place', 'Lieu de la session') !!}
                             {!! Form::text('place', $event->place ?? '' ) !!}<br><br>
