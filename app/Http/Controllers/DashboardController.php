@@ -7,6 +7,7 @@ use App\Models\Character;
 use App\Models\Event;
 use App\Models\Invitation;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,21 +15,11 @@ class DashboardController extends Controller
 {
     function index()
     {
-        $nextSession = '';
-        foreach(Auth::user()->characters as $character) {
-            $events = $character->campaign->events;
-            foreach ($events as $event) {
-                if($event->start > now() && $event->start < $nextSession) {
-                    $nextSession = $event;
-                }
-            }
-        }
-
         $data = [
             'gmCount' => Campaign::where('master_id', Auth::user()->id)->count(),
             'charactersCount' => Auth::user()->characters->count(),
             'invitationsCount' => Invitation::where('user_id', Auth::user()->id)->count(),
-            //'nextSession' => Event::where('user_id', Auth::user()->id)->count(),
+            'nextSession' => Event::whereDate('start', '>=', Carbon::now()->format('Y-m-d\TH:s'))->orderBy('start')->first(),
         ];
 
         $adminData = [

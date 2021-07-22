@@ -10,4 +10,9 @@ class Event extends Model
     protected $primaryKey = 'id_event';
 
     use HasFactory;
+
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class, 'campaign_id');
+    }
 }
