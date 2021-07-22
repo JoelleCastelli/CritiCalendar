@@ -28,7 +28,19 @@ class PasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'password' => 'required|confirmed',
+            'current_password' => 'required',
+            'password' => 'required|confirmed|min:8|alpha_num',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'current_password.required' => 'Le mot de passe actuel est requis',
+            'password.required' => 'Le nouveau mot de passe est requis',
+            'password.confirmed' => 'La confirmation du mot de passe est incorrecte',
+            'password.min' => 'Le mot de passe doit contenir au minimum 8 caractères',
+            'password.alpha_num' => 'Le mot de passe doit être composé ',
         ];
     }
 }
