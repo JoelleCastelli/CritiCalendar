@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
+    protected $primaryKey = 'id_event';
+
     use HasFactory;
 
     public function campaign()
