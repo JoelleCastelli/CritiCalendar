@@ -11,7 +11,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="campaign-details py-3">
+                    <div class="campaign-details pt-3">
                         <div><b>Nom :</b> {{ $campaign->name }}</div>
                         <div><b>Description :</b> {{ $campaign->description }}</div>
                         <div><b>Thème :</b> {{ $campaign->theme->name }}</div>
