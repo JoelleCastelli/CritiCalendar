@@ -64,7 +64,9 @@
                                 {{ __('Log out') }}
                             </x-dropdown-link>
                         </form>
-                        Paramètres
+                        <x-dropdown-link :href="route('settings')">
+                            Paramètres
+                        </x-dropdown-link>
                     </x-slot>
                 </x-dropdown>
             </div>
@@ -115,6 +117,10 @@
                         {{ __('Log out') }}
                     </x-responsive-nav-link>
                 </form>
+
+                <x-responsive-nav-link :href="route('settings')">
+                    Paramètres
+                </x-dropdown-link>
             </div>
         </div>
     </div>

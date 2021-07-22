@@ -6,6 +6,7 @@ use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 use App\Models\Campaign;
 use App\Models\Theme;
 use Illuminate\Support\Facades\DB;
@@ -22,26 +23,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 // ROUTE TO DISPLAY LOGS
 Route::get('logs',
     '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index'
 )->middleware(['auth', 'admin'])->name('logs');
 
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/test', function () {
-    print_r(Campaign::all()->count() * 5);
-})->middleware(['auth'])->name('test');
-
-
 Route::get(
     '/dashboard',
     [DashboardController::class, 'index']
 )->middleware(['auth'])->name('dashboard');
+
+Route::get(
+    '/parametres',
+    [UserController::class, 'index']
+)->middleware(['auth'])->name('settings');
+
+Route::post(
+    '/parametres/informations',
+    [UserController::class, 'saveSettings']
+)->middleware(['auth'])->name('save_settings');
+
+Route::post(
+    '/parametres/password',
+    [UserController::class, 'savePassword']
+)->middleware(['auth'])->name('save_password');
 
 require __DIR__.'/auth.php';
 
