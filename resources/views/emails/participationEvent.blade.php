@@ -16,13 +16,12 @@
     </p>
     <p>
         <b>Détails de la session : </b><br>
-        <b>Titre : </b> {{ $event->title }}
-        <b>Date : </b> {{ $event->start }}
-        <b>Lieu : </b> {{ $event->place }}
+        <b>Titre : </b> {{ $event->title }}<br>
+        <b>Date : </b> {{ $event->start }}<br>
+        <b>Lieu : </b> {{ $event->place }}<br>
         @if(empty($event->URL))
-            <b>Lien url : </b> {{ $event->URL }}
+            <b>Lien url : </b> <a href="{{ $event->URL }}">{{ $event->URL }}</a><br>
         @endif 
-
     </p>
     <p>
         Connectez-vous pour voir la session plus en détail.
