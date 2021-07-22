@@ -83,30 +83,33 @@
                     </div>
 
                     {{--Sessions--}}
-                    @if($campaign->characters->count() > 0)
-                    <div class="py-3 campaign-sessions">
-                        <h3>Sessions</h3>
-                        @foreach ($campaign->events as $event)
-                            <div class="py-2">
-                                <div><b>Nom :</b> {{ $event->title }}</div>
-                                <div><b>Date du début :</b> {{ date('d/m/Y H:i', strtotime($event->start)) }}</div>
-                                <div><b>Date de fin :</b> {{ date('d/m/Y H:i', strtotime($event->end)) }}</div>
-                                <div><b>Récapitulatif :</b> {{ $event->recap ?? "-" }}</div>
-                            </div>
-                            <div class="btn btn-sm btn-secondary">
-                                <a href="{{ route('display_event', ['campaign_id' => $campaign->id, 'event_id' => $event->id_event]) }}">
-                                    Modifier
-                                </a>
-                            </div>
-                            <div class="btn btn-sm btn-danger">
-                                <a href="{{ route('delete_event', ['campaign_id' => $campaign->id, 'event_id' => $event->id_event]) }}">
-                                    Supprimer
-                                </a>
-                            </div>
-                        @endforeach
-                    </div>
-
+                    <h3>Sessions</h3>
+                    @if($campaign->events->count() > 0)
+                        <div class="py-3 campaign-sessions">
+                            @foreach ($campaign->events as $event)
+                                <div class="py-2">
+                                    <div><b>Nom :</b> {{ $event->title }}</div>
+                                    <div><b>Date du début :</b> {{ date('d/m/Y H:i', strtotime($event->start)) }}</div>
+                                    <div><b>Date de fin :</b> {{ date('d/m/Y H:i', strtotime($event->end)) }}</div>
+                                    <div><b>Récapitulatif :</b> {{ $event->recap ?? "-" }}</div>
+                                </div>
+                                <div class="btn btn-sm btn-secondary">
+                                    <a href="{{ route('display_event', ['campaign_id' => $campaign->id, 'event_id' => $event->id_event]) }}">
+                                        Modifier
+                                    </a>
+                                </div>
+                                <div class="btn btn-sm btn-danger">
+                                    <a href="{{ route('delete_event', ['campaign_id' => $campaign->id, 'event_id' => $event->id_event]) }}">
+                                        Supprimer
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <p class="py-2">Aucune session</p>
                     @endif
+
+
                      <div class="btn btn-sm btn-primary">
                         <a href="{{ route('display_event', ['campaign_id' => $campaign->id]) }}">
                             Ajouter une session

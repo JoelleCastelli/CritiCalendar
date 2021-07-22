@@ -45,7 +45,7 @@ class EventController extends Controller
         $campaign = Campaign::Find($request->campaign_id);
 
         if($save)
-            return redirect()->route('display_event', ['campaign_id' => $campaign->id, 'event_id' => $event->id_event])->with('success', $msg);
+            return redirect()->route('details_campaign', $campaign->id)->with('success', $msg);
 
     }
 
