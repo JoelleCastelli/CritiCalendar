@@ -1,17 +1,13 @@
 <?php
 
-use App\Http\Controllers\WallController;
-use App\Http\Controllers\FilmController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
-use App\Models\Campaign;
 use App\Models\Event;
 use Illuminate\Http\Request;
-use App\Models\Theme;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -57,49 +53,7 @@ Route::post(
 
 require __DIR__.'/auth.php';
 
-/* CUSTOM */
-Route::get(
-    '/plip/{truc?}',
-    [WallController::class, 'plip']
-)->middleware(['auth'])->name('plip');
 
-Route::get(
-    '/plop/{truc?}',
-    function ($truc = null) {
-        return 'plop';
-    }
-);
-
-Route::get(
-    '/wall',
-    [WallController::class, 'index']
-)->middleware(['auth'])->name('wall');
-
-Route::post(
-    '/wall',
-    [WallController::class, 'post']
-)->middleware(['auth'])->name('post');
-
-Route::get(
-    '/update/{post_id}',
-    [WallController::class, 'update']
-)->middleware(['auth'])->name('update');
-
-Route::post(
-    '/save',
-    [WallController::class, 'save']
-)->middleware(['auth'])->name('save');
-
-Route::get(
-    '/delete/{post_id}',
-    [WallController::class, 'delete']
-)->middleware(['auth'])->name('delete');
-
-
-Route::get(
-    '/films',
-    [FilmController::class, 'index']
-)->middleware(['auth'])->name('films');
 
 // CHARACTERS
 Route::get(
@@ -108,7 +62,7 @@ Route::get(
 )->middleware(['auth'])->name('characters');
 
 Route::get(
-    '/campaign/{campaign_id}/personnage/{player_id}',
+    '/campagnes/{campaign_id}/personnage/{player_id}',
     [CharacterController::class, 'details']
 )->middleware(['auth'])->name('my-character');
 
@@ -121,6 +75,7 @@ Route::get(
     '/personnages/supprimer/{character_id}',
     [CharacterController::class, 'delete']
 )->middleware(['auth'])->name('delete_character');
+
 
 // CAMPAIGNS
 Route::get(
