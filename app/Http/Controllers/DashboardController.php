@@ -19,7 +19,7 @@ class DashboardController extends Controller
             $campaignsId[] = $character->campaign->id;
         }
         if(!empty($campaignsId)) {
-            $nextSession = Event::whereIn('id', $campaignsId)
+            $nextSession = Event::whereIn('campaign_id', $campaignsId)
                 ->whereDate('start', '>=', Carbon::now()->format('Y-m-d\TH:i'))
                 ->orderBy('start')->first();
         }
