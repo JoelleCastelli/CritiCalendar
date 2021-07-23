@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Character;
+use App\Models\Event;
 
 class CampaignController extends Controller
 {
@@ -70,11 +71,12 @@ class CampaignController extends Controller
 
     function details(Request $request) {
         $campaign = Campaign::find($request->campaign_id);
+        $events = Event::where('campaign_id', $request->campaign_id)->paginate(5);
 
         if(Auth::user()->id == $campaign->master_id)
-            return view('campaigns.details', ['campaign' => $campaign]);
+            return view('campaigns.details', ['campaign' => $campaign, 'events' => $events]);
         else
-            return view('campaigns.details-not-owner', ['campaign' => $campaign]);
+            return view('campaigns.details-not-owner', ['campaign' => $campaign, 'events' => $events]);
     }
 
     function removeCharacter(Request $request) {

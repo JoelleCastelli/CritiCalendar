@@ -84,9 +84,9 @@
 
                     {{--Sessions--}}
                     <h3>Sessions</h3>
-                    @if($campaign->events->count() > 0)
+                    @if($events->count() > 0)
                         <div class="py-3 campaign-sessions">
-                            @foreach ($campaign->events as $event)
+                            @foreach ($events as $event)
                                 <div class="py-2">
                                     <div><b>Nom :</b> {{ $event->title }}</div>
                                     <div><b>Date du début :</b> {{ date('d/m/Y H:i', strtotime($event->start)) }}</div>
@@ -104,6 +104,8 @@
                                     </a>
                                 </div>
                             @endforeach
+                            {{ $events->links() }}
+
                         </div>
                     @else
                         <p class="py-2">Aucune session</p>
