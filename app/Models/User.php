@@ -46,4 +46,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(Character::class,'player_id');
     }
+
+    public static function getSessions()
+    {
+        // get campaigns as player
+        foreach (Auth::user()->characters as $character) {
+            $campaignsId[] = $character->campaign->id;
+        }
+
+        // get campaigns as master
+        foreach (Campaign::all() as $campaign) {
+            if ($campaign->master_id == Auth::user()->id)
+                $campaignsId[] = $campaign->id;
+        }
+        return Event::whereIn('campaign_id', $campaignsId)->get();
+
+    }
 }
