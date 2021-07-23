@@ -2,7 +2,7 @@
 
 
 namespace Database\Seeders;
-use App\Models\Events;
+use App\Models\Event;
 use Illuminate\Support\Str;
 
 class EventSeeder extends DatabaseSeeder
@@ -16,7 +16,7 @@ class EventSeeder extends DatabaseSeeder
     public function run()
     {
 
-        Events::insert([
+        Event::insert([
             [
                 'id' => Str::uuid(),
                 'title' => 'Evenement 2',
