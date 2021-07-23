@@ -26,7 +26,7 @@ class EventFactory extends Factory
     {
         return  [
             'id' =>  Str::uuid(),
-            'title' => $this->faker->word . ' ' . $this->faker->randomDigitNotNull,
+            'title' => ucfirst($this->faker->word) . ' ' . $this->faker->randomDigitNotNull,
             'start' => $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = '+1 years', $timezone = 'Europe/Paris'),
             'end' => $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = '+1 years', $timezone = 'Europe/Paris'),
             'place' => 'Chez ' . User::all()->random()->name,

@@ -23,7 +23,7 @@
                     </div>
                         {!! Form::hidden('character_id', $character->id) !!}
 
-                        {!! Form::label('ancestry', 'Ancêtre') !!}
+                        {!! Form::label('ancestry', 'Ascendance') !!}
                         {!! Form::text('ancestry', $character->ancestry) !!}<br><br>
 
                         {!! Form::label('class', 'Classe') !!}
@@ -65,14 +65,14 @@
                         {!! Form::label('charisma', 'Charisme') !!}
                         {!! Form::number('charisma', $character->charisma) !!}<br><br>
 
-                        {!! Form::label('attacks', 'Attaques') !!}
-                        {!! Form::text('attacks', $character->attacks) !!}<br><br>
+                        {!! Form::label('attacks', 'Attaques') !!}<br>
+                        {!! Form::textarea('attacks', $character->attacks) !!}<br><br>
 
-                        {!! Form::label('languages', 'Langues') !!}
-                        {!! Form::text('languages', $character->languages) !!}<br><br>
+                        {!! Form::label('languages', 'Langues') !!}<br>
+                        {!! Form::textarea('languages', $character->languages) !!}<br><br>
 
-                        {!! Form::label('equipment', 'Equipement') !!}
-                        {!! Form::text('equipment', $character->equipment) !!}<br><br>
+                        {!! Form::label('equipment', 'Equipement') !!}<br>
+                        {!! Form::textarea('equipment', $character->equipment) !!}<br><br>
 
                         {!! Form::submit('Modifier') !!}
                 {!! Form::close() !!}

@@ -37,6 +37,6 @@ class CharacterController extends Controller
     {
         $character = Character::Find($request->character_id);
         $character->delete();
-        return redirect()->route('campaigns')->with('success', 'Votre partipation a bien été retirée');
+        return redirect()->back()->with('success', 'Votre participation a bien été retirée');
     }
 }

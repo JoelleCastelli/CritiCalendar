@@ -19,7 +19,7 @@
                                     <div><b>Nom :</b> {{ $invitation->campaign->name }}</div>
                                     <div><b>Description :</b> {{ $invitation->campaign->description }}</div>
                                     <div><b>Thème :</b> {{ $invitation->campaign->theme->name }}</div>
-                                    <div>
+                                    <div class="my-2">
                                         <div class="btn btn-sm btn-primary">
                                             <a href="{{ route('accept_invitation', $invitation->id) }}">Accepter</a>
                                         </div>
@@ -32,7 +32,7 @@
                         @endforeach
                         {{ $invitations->links() }}
                     @else
-                        <p>Vous n'avez aucune invitation en attente</p>
+                        <p class="mt-3">Vous n'avez aucune invitation en attente</p>
                     @endif
                 </div>
             </div>

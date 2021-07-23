@@ -14,10 +14,10 @@
                     {!! Form::open(['route' => 'save_campaign']) !!}
                         {!! Form::label('name', 'Nom') !!}
                         {!! Form::text('name') !!}<br><br>
-                        {!! Form::label('description', 'Description') !!}
-                        {!! Form::text('description') !!}<br><br>
                         {!! Form::label('theme_id', 'Thème') !!}
                         {!! Form::select('theme_id', $themes) !!}<br><br>
+                        {!! Form::label('description', 'Description') !!}<br>
+                        {!! Form::textarea('description') !!}<br><br>
                         {!! Form::submit('Valider') !!}
                     {!! Form::close() !!}
                 </div>

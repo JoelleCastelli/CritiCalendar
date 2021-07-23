@@ -25,7 +25,7 @@
                     <x-nav-link :href="route('calendar')" :active="request()->routeIs('calendar')">
                         Calendrier
                     </x-nav-link>
-                </div>
+                </div>--}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('characters')" :active="request()->routeIs('characters')">
                         Mes personnages
@@ -54,6 +54,9 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <x-dropdown-link :href="route('settings')">
+                            Paramètres
+                        </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -64,7 +67,6 @@
                                 {{ __('Log out') }}
                             </x-dropdown-link>
                         </form>
-                        Paramètres
                     </x-slot>
                 </x-dropdown>
             </div>
@@ -105,6 +107,10 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <x-responsive-nav-link :href="route('settings')">
+                    Paramètres
+                </x-responsive-nav-link>
+
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
