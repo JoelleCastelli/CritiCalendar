@@ -171,3 +171,9 @@ Route::group(['middleware' => ['campaignOwner']], function () {
         [EventController::class, 'saveEvent']
     )->middleware(['auth'])->name('save_event');
 });
+
+
+//CALENDAR
+Route::get('/calendar', function () {
+    return view('calendar');
+})->name('calendar');

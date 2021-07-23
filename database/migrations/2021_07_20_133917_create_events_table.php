@@ -23,8 +23,6 @@ class CreateEventsTable extends Migration
             $table->string('URL')->nullable();
             $table->text('recap')->nullable();
             $table->integer('campaign_id');
-            $table->timestamps();
-
         });
     }
 
