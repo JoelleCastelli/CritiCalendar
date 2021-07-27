@@ -7,6 +7,7 @@ use App\Models\Character;
 use App\Models\Event;
 use App\Models\Theme;
 use App\Models\Events;
+use Database\Factories\EventFactory;
 use Illuminate\Database\Seeder;
 use \App\Models\User;
 use Illuminate\Support\Facades\Schema;
