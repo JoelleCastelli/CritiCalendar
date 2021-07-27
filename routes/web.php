@@ -174,6 +174,6 @@ Route::group(['middleware' => ['campaignOwner']], function () {
 
 
 //CALENDAR
-Route::get('/calendar', function () {
-    return view('calendar');
+Route::get('/calendrier', function () {
+    return view('events/calendar');
 })->name('calendar');
