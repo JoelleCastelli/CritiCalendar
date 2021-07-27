@@ -89,9 +89,11 @@
                             @foreach ($events as $event)
                                 <div class="py-2">
                                     <div><b>Nom :</b> {{ $event->title }}</div>
-                                    <div><b>Date du début :</b> {{ date('d/m/Y H:i', strtotime($event->start)) }}</div>
-                                    <div><b>Date de fin :</b> {{ date('d/m/Y H:i', strtotime($event->end)) }}</div>
-                                    <div><b>Récapitulatif :</b> {{ $event->recap ?? "-" }}</div>
+                                    <div><b>Date du début :</b> {{ date('d/m/Y à H:i', strtotime($event->start)) }}</div>
+                                    <div><b>Date de fin :</b> {{ date('d/m/Y à H:i', strtotime($event->end)) }}</div>
+                                    <div><b>Lieu :</b> {{ $event->place ?? " / " }}</div>
+                                    <div><b>URL :</b> {{ $event->url ?? " / " }}</div>
+                                    <div><b>Récapitulatif :</b> {{ $event->recap ?? " / " }}</div>
                                 </div>
                                 <div class="btn btn-sm btn-secondary">
                                     <a href="{{ route('display_event', ['campaign_id' => $campaign->id, 'event_id' => $event->id_event]) }}">
