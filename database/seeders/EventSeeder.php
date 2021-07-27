@@ -16,7 +16,7 @@ class EventSeeder extends DatabaseSeeder
     public function run()
     {
         Event::factory()
-            ->count(15)
+            ->count(25)
             ->create();
     }
 }
